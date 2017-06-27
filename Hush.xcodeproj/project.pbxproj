@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0106AD301F0228BD001A2050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */; };
+		0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D97F1F0232E5009DFD7A /* ChatRoom.swift */; };
 		01EEBAF31F022392005751DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBAF21F022392005751DA /* AppDelegate.swift */; };
 		01EEBAF51F022392005751DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBAF41F022392005751DA /* ViewController.swift */; };
 		01EEBAF81F022392005751DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EEBAF61F022392005751DA /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0130D97F1F0232E5009DFD7A /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		01EEBAEF1F022392005751DA /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EEBAF21F022392005751DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EEBAF41F022392005751DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0130D97B1F02325C009DFD7A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				01EEBAF41F022392005751DA /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0130D97C1F023264009DFD7A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0130D97F1F0232E5009DFD7A /* ChatRoom.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0130D97D1F023268009DFD7A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01EEBAF61F022392005751DA /* Main.storyboard */,
+				01EEBAFE1F022392005751DA /* LaunchScreen.storyboard */,
+				01EEBAFC1F022392005751DA /* Assets.xcassets */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0130D97E1F02326D009DFD7A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				01EEBAF21F022392005751DA /* AppDelegate.swift */,
+				01EEBB011F022392005751DA /* Info.plist */,
+				0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		01EEBAE61F022392005751DA = {
 			isa = PBXGroup;
 			children = (
@@ -93,13 +131,10 @@
 		01EEBAF11F022392005751DA /* Hush */ = {
 			isa = PBXGroup;
 			children = (
-				01EEBAF21F022392005751DA /* AppDelegate.swift */,
-				01EEBAF41F022392005751DA /* ViewController.swift */,
-				01EEBAF61F022392005751DA /* Main.storyboard */,
-				01EEBAFC1F022392005751DA /* Assets.xcassets */,
-				01EEBAFE1F022392005751DA /* LaunchScreen.storyboard */,
-				01EEBB011F022392005751DA /* Info.plist */,
-				0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */,
+				0130D97C1F023264009DFD7A /* Model */,
+				0130D97B1F02325C009DFD7A /* Controller */,
+				0130D97D1F023268009DFD7A /* View */,
+				0130D97E1F02326D009DFD7A /* Supporting Files */,
 				01EEBAF91F022392005751DA /* Hush.xcdatamodeld */,
 			);
 			path = Hush;
@@ -341,6 +376,7 @@
 			files = (
 				01EEBAF51F022392005751DA /* ViewController.swift in Sources */,
 				01EEBAF31F022392005751DA /* AppDelegate.swift in Sources */,
+				0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */,
 				01EEBAFB1F022392005751DA /* Hush.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
