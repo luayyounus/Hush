@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0106AD301F0228BD001A2050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */; };
 		01EEBAF31F022392005751DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBAF21F022392005751DA /* AppDelegate.swift */; };
 		01EEBAF51F022392005751DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBAF41F022392005751DA /* ViewController.swift */; };
 		01EEBAF81F022392005751DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EEBAF61F022392005751DA /* Main.storyboard */; };
@@ -14,6 +15,8 @@
 		01EEBAFD1F022392005751DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01EEBAFC1F022392005751DA /* Assets.xcassets */; };
 		01EEBB001F022392005751DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EEBAFE1F022392005751DA /* LaunchScreen.storyboard */; };
 		01EEBB0B1F022392005751DA /* HushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBB0A1F022392005751DA /* HushTests.swift */; };
+		3D02271B71A82B8EC39E1EEE /* Pods_HushTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B220C028E91D6234D2A5EA8C /* Pods_HushTests.framework */; };
+		C73EACD7CE6E40FA3D2D031C /* Pods_Hush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552ED304655CEC403374FBF1 /* Pods_Hush.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		01EEBAEF1F022392005751DA /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EEBAF21F022392005751DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EEBAF41F022392005751DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +42,12 @@
 		01EEBB061F022392005751DA /* HushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EEBB0A1F022392005751DA /* HushTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushTests.swift; sourceTree = "<group>"; };
 		01EEBB0C1F022392005751DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D59A3AC3DDCAA12FD3A3381 /* Pods-HushTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HushTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HushTests/Pods-HushTests.release.xcconfig"; sourceTree = "<group>"; };
+		552ED304655CEC403374FBF1 /* Pods_Hush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B220C028E91D6234D2A5EA8C /* Pods_HushTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HushTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C291560819704B8767CE5229 /* Pods-Hush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hush/Pods-Hush.release.xcconfig"; sourceTree = "<group>"; };
+		F1D9031C293A9DBC71F69A9B /* Pods-HushTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HushTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HushTests/Pods-HushTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FDD177D34331F57963288C88 /* Pods-Hush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hush.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hush/Pods-Hush.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C73EACD7CE6E40FA3D2D031C /* Pods_Hush.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D02271B71A82B8EC39E1EEE /* Pods_HushTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +76,8 @@
 				01EEBAF11F022392005751DA /* Hush */,
 				01EEBB091F022392005751DA /* HushTests */,
 				01EEBAF01F022392005751DA /* Products */,
+				1D2BABFD7C7C5DFE51D94273 /* Pods */,
+				47EE6E378CA80046F0832C1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +99,7 @@
 				01EEBAFC1F022392005751DA /* Assets.xcassets */,
 				01EEBAFE1F022392005751DA /* LaunchScreen.storyboard */,
 				01EEBB011F022392005751DA /* Info.plist */,
+				0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */,
 				01EEBAF91F022392005751DA /* Hush.xcdatamodeld */,
 			);
 			path = Hush;
@@ -99,6 +114,26 @@
 			path = HushTests;
 			sourceTree = "<group>";
 		};
+		1D2BABFD7C7C5DFE51D94273 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FDD177D34331F57963288C88 /* Pods-Hush.debug.xcconfig */,
+				C291560819704B8767CE5229 /* Pods-Hush.release.xcconfig */,
+				F1D9031C293A9DBC71F69A9B /* Pods-HushTests.debug.xcconfig */,
+				3D59A3AC3DDCAA12FD3A3381 /* Pods-HushTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		47EE6E378CA80046F0832C1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				552ED304655CEC403374FBF1 /* Pods_Hush.framework */,
+				B220C028E91D6234D2A5EA8C /* Pods_HushTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +141,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01EEBB0F1F022392005751DA /* Build configuration list for PBXNativeTarget "Hush" */;
 			buildPhases = (
+				0A8C7F4FB0DE325938A34E86 /* [CP] Check Pods Manifest.lock */,
 				01EEBAEB1F022392005751DA /* Sources */,
 				01EEBAEC1F022392005751DA /* Frameworks */,
 				01EEBAED1F022392005751DA /* Resources */,
+				7473CE3191C979894032E8D2 /* [CP] Embed Pods Frameworks */,
+				A9A494900A02E0D53BAB3E16 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,9 +161,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01EEBB121F022392005751DA /* Build configuration list for PBXNativeTarget "HushTests" */;
 			buildPhases = (
+				F9CE03A5AEA21B73C82FD517 /* [CP] Check Pods Manifest.lock */,
 				01EEBB021F022392005751DA /* Sources */,
 				01EEBB031F022392005751DA /* Frameworks */,
 				01EEBB041F022392005751DA /* Resources */,
+				13C57540844B090EC60C62E8 /* [CP] Embed Pods Frameworks */,
+				0D1384508C78337B4D55A0B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01EEBB001F022392005751DA /* LaunchScreen.storyboard in Resources */,
+				0106AD301F0228BD001A2050 /* GoogleService-Info.plist in Resources */,
 				01EEBAFD1F022392005751DA /* Assets.xcassets in Resources */,
 				01EEBAF81F022392005751DA /* Main.storyboard in Resources */,
 			);
@@ -198,6 +240,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A8C7F4FB0DE325938A34E86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0D1384508C78337B4D55A0B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HushTests/Pods-HushTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		13C57540844B090EC60C62E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HushTests/Pods-HushTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7473CE3191C979894032E8D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hush/Pods-Hush-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9A494900A02E0D53BAB3E16 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hush/Pods-Hush-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9CE03A5AEA21B73C82FD517 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		01EEBAEB1F022392005751DA /* Sources */ = {
@@ -345,6 +480,7 @@
 		};
 		01EEBB101F022392005751DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDD177D34331F57963288C88 /* Pods-Hush.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6572E988F5;
@@ -358,6 +494,7 @@
 		};
 		01EEBB111F022392005751DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C291560819704B8767CE5229 /* Pods-Hush.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6572E988F5;
@@ -371,6 +508,7 @@
 		};
 		01EEBB131F022392005751DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1D9031C293A9DBC71F69A9B /* Pods-HushTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -386,6 +524,7 @@
 		};
 		01EEBB141F022392005751DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D59A3AC3DDCAA12FD3A3381 /* Pods-HushTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,6 +557,7 @@
 				01EEBB111F022392005751DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		01EEBB121F022392005751DA /* Build configuration list for PBXNativeTarget "HushTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +566,7 @@
 				01EEBB141F022392005751DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
