@@ -10,6 +10,7 @@ target 'Hush' do
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
   # pod 'JSQMessagesViewController'
 
   target 'HushTests' do
