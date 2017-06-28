@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0106AD301F0228BD001A2050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */; };
 		011EABC41F03AFF400F27016 /* NewHushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC31F03AFF400F27016 /* NewHushViewController.swift */; };
-		011EABC61F03B34200F27016 /* OpenedChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC51F03B34200F27016 /* OpenedChatRoomViewController.swift */; };
+		011EABC61F03B34200F27016 /* ConversationChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC51F03B34200F27016 /* ConversationChatRoomViewController.swift */; };
 		0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D97F1F0232E5009DFD7A /* ChatRoom.swift */; };
 		0130D9821F0241AA009DFD7A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D9811F0241AA009DFD7A /* HomeViewController.swift */; };
 		0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */; };
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		011EABC31F03AFF400F27016 /* NewHushViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHushViewController.swift; sourceTree = "<group>"; };
-		011EABC51F03B34200F27016 /* OpenedChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenedChatRoomViewController.swift; sourceTree = "<group>"; };
+		011EABC51F03B34200F27016 /* ConversationChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationChatRoomViewController.swift; sourceTree = "<group>"; };
 		0130D97F1F0232E5009DFD7A /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		0130D9811F0241AA009DFD7A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomNibCell.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		0130D97B1F02325C009DFD7A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				011EABC51F03B34200F27016 /* OpenedChatRoomViewController.swift */,
+				011EABC51F03B34200F27016 /* ConversationChatRoomViewController.swift */,
 				011EABC31F03AFF400F27016 /* NewHushViewController.swift */,
 				0130D9811F0241AA009DFD7A /* HomeViewController.swift */,
 			);
@@ -394,7 +394,7 @@
 				0130D98C1F03299D009DFD7A /* UIExtensions.swift in Sources */,
 				0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */,
 				01EEBAFB1F022392005751DA /* Hush.xcdatamodeld in Sources */,
-				011EABC61F03B34200F27016 /* OpenedChatRoomViewController.swift in Sources */,
+				011EABC61F03B34200F27016 /* ConversationChatRoomViewController.swift in Sources */,
 				0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */,
 				0130D9821F0241AA009DFD7A /* HomeViewController.swift in Sources */,
 				011EABC41F03AFF400F27016 /* NewHushViewController.swift in Sources */,

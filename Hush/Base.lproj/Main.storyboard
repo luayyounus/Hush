@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1022" y="774"/>
         </scene>
-        <!--Opened Chat Room View Controller-->
+        <!--Conversation Chat Room View Controller-->
         <scene sceneID="ccf-3w-z7i">
             <objects>
-                <viewController id="7M6-Sp-ezg" customClass="OpenedChatRoomViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7M6-Sp-ezg" customClass="ConversationChatRoomViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ux3-nD-ipI"/>
                         <viewControllerLayoutGuide type="bottom" id="gea-e9-MJW"/>
