@@ -28,7 +28,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send and receive messages without signing up!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPU-q1-XFM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send and receive messages quickly without Signup!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPU-q1-XFM">
                                 <rect key="frame" x="37.5" y="387.5" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9yw-8Z-iMy"/>
@@ -72,63 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2j-Ro-GIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1023" y="-212"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="pZW-uq-iPT">
-            <objects>
-                <viewController id="FQh-fF-Vrb" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="J2n-ic-p1O"/>
-                        <viewControllerLayoutGuide type="bottom" id="PtK-39-Gez"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rAK-aG-Jku">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your Name :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8g-BC-lGj">
-                                <rect key="frame" x="68.5" y="234" width="238" height="35"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYC-PM-SAf">
-                                <rect key="frame" x="88" y="389" width="200" height="50"/>
-                                <color key="backgroundColor" red="0.16283005480000001" green="0.68255525829999997" blue="0.37693479660000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="29F-DG-I82"/>
-                                    <constraint firstAttribute="width" constant="200" id="suZ-eL-oNn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="25"/>
-                                <state key="normal" title="Go!">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Superman" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gUh-xV-JFH">
-                                <rect key="frame" x="87.5" y="308.5" width="200" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="2EP-DW-7md"/>
-                                    <constraint firstAttribute="width" constant="200" id="Zr0-IZ-P6B"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="C8g-BC-lGj" firstAttribute="centerX" secondItem="rAK-aG-Jku" secondAttribute="centerX" id="87x-Gd-Wn2"/>
-                            <constraint firstItem="gUh-xV-JFH" firstAttribute="top" secondItem="C8g-BC-lGj" secondAttribute="bottom" constant="40" id="Db4-Jc-2DE"/>
-                            <constraint firstItem="mYC-PM-SAf" firstAttribute="centerX" secondItem="rAK-aG-Jku" secondAttribute="centerX" id="G5U-Dd-0WS"/>
-                            <constraint firstItem="mYC-PM-SAf" firstAttribute="top" secondItem="gUh-xV-JFH" secondAttribute="bottom" constant="30" id="WcB-a4-lsQ"/>
-                            <constraint firstItem="gUh-xV-JFH" firstAttribute="centerY" secondItem="rAK-aG-Jku" secondAttribute="centerY" id="cRo-Mz-gce"/>
-                            <constraint firstItem="gUh-xV-JFH" firstAttribute="centerX" secondItem="rAK-aG-Jku" secondAttribute="centerX" id="i0g-SE-0Ld"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BHw-ky-qES" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1746" y="-213"/>
+            <point key="canvasLocation" x="1022" y="68"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="VF3-Us-zuF">
@@ -183,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="1022" y="774"/>
         </scene>
-        <!--Conversation Chat Room View Controller-->
+        <!--Conversation View Controller-->
         <scene sceneID="ccf-3w-z7i">
             <objects>
-                <viewController id="7M6-Sp-ezg" customClass="ConversationChatRoomViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7M6-Sp-ezg" customClass="ConversationViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ux3-nD-ipI"/>
                         <viewControllerLayoutGuide type="bottom" id="gea-e9-MJW"/>
@@ -260,10 +204,10 @@
             </objects>
             <point key="canvasLocation" x="1744.8" y="1142.8785607196403"/>
         </scene>
-        <!--New Hush View Controller-->
+        <!--New Chat Room View Controller-->
         <scene sceneID="BWC-xw-Nbq">
             <objects>
-                <viewController id="B4W-ys-K6e" customClass="NewHushViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="B4W-ys-K6e" customClass="NewChatRoomViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jtH-X1-av1"/>
                         <viewControllerLayoutGuide type="bottom" id="kB3-dY-cem"/>
@@ -293,7 +237,7 @@
                                     <action selector="doneButtonPressed:" destination="B4W-ys-K6e" eventType="touchUpInside" id="BOe-X5-rZ1"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Roomie Lookup" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Za1-El-gRf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Friends" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Za1-El-gRf">
                                 <rect key="frame" x="87.5" y="228.5" width="200" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="To5-vl-eNc"/>

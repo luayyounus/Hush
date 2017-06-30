@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0106AD301F0228BD001A2050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */; };
-		011EABC41F03AFF400F27016 /* NewHushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC31F03AFF400F27016 /* NewHushViewController.swift */; };
-		011EABC61F03B34200F27016 /* ConversationChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC51F03B34200F27016 /* ConversationChatRoomViewController.swift */; };
+		011EABC41F03AFF400F27016 /* NewChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */; };
+		011EABC61F03B34200F27016 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC51F03B34200F27016 /* ConversationViewController.swift */; };
+		011EABC81F044E1900F27016 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC71F044E1900F27016 /* Conversation.swift */; };
 		0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D97F1F0232E5009DFD7A /* ChatRoom.swift */; };
 		0130D9821F0241AA009DFD7A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D9811F0241AA009DFD7A /* HomeViewController.swift */; };
 		0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */; };
@@ -37,13 +38,15 @@
 
 /* Begin PBXFileReference section */
 		0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		011EABC31F03AFF400F27016 /* NewHushViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHushViewController.swift; sourceTree = "<group>"; };
-		011EABC51F03B34200F27016 /* ConversationChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationChatRoomViewController.swift; sourceTree = "<group>"; };
+		011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatRoomViewController.swift; sourceTree = "<group>"; };
+		011EABC51F03B34200F27016 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		011EABC71F044E1900F27016 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		0130D97F1F0232E5009DFD7A /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		0130D9811F0241AA009DFD7A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomNibCell.swift; sourceTree = "<group>"; };
 		0130D9881F0327A8009DFD7A /* ChatRoomNibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomNibCell.xib; sourceTree = "<group>"; };
 		0130D98B1F03299D009DFD7A /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		01A076B41F060D9D00F2CD45 /* Hush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hush.entitlements; sourceTree = "<group>"; };
 		01EEBAEF1F022392005751DA /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EEBAF21F022392005751DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01EEBAF71F022392005751DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,8 +88,8 @@
 		0130D97B1F02325C009DFD7A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				011EABC51F03B34200F27016 /* ConversationChatRoomViewController.swift */,
-				011EABC31F03AFF400F27016 /* NewHushViewController.swift */,
+				011EABC51F03B34200F27016 /* ConversationViewController.swift */,
+				011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */,
 				0130D9811F0241AA009DFD7A /* HomeViewController.swift */,
 			);
 			name = Controller;
@@ -96,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				0130D97F1F0232E5009DFD7A /* ChatRoom.swift */,
+				011EABC71F044E1900F27016 /* Conversation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -146,6 +150,7 @@
 		01EEBAF11F022392005751DA /* Hush */ = {
 			isa = PBXGroup;
 			children = (
+				01A076B41F060D9D00F2CD45 /* Hush.entitlements */,
 				0130D97C1F023264009DFD7A /* Model */,
 				0130D97B1F02325C009DFD7A /* Controller */,
 				0130D97D1F023268009DFD7A /* View */,
@@ -242,6 +247,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 6572E988F5;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					01EEBB051F022392005751DA = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -393,11 +403,12 @@
 				01EEBAF31F022392005751DA /* AppDelegate.swift in Sources */,
 				0130D98C1F03299D009DFD7A /* UIExtensions.swift in Sources */,
 				0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */,
+				011EABC81F044E1900F27016 /* Conversation.swift in Sources */,
 				01EEBAFB1F022392005751DA /* Hush.xcdatamodeld in Sources */,
-				011EABC61F03B34200F27016 /* ConversationChatRoomViewController.swift in Sources */,
+				011EABC61F03B34200F27016 /* ConversationViewController.swift in Sources */,
 				0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */,
 				0130D9821F0241AA009DFD7A /* HomeViewController.swift in Sources */,
-				011EABC41F03AFF400F27016 /* NewHushViewController.swift in Sources */,
+				011EABC41F03AFF400F27016 /* NewChatRoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +550,7 @@
 			baseConfigurationReference = FDD177D34331F57963288C88 /* Pods-Hush.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements;
 				DEVELOPMENT_TEAM = 6572E988F5;
 				INFOPLIST_FILE = Hush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -553,6 +565,7 @@
 			baseConfigurationReference = C291560819704B8767CE5229 /* Pods-Hush.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements;
 				DEVELOPMENT_TEAM = 6572E988F5;
 				INFOPLIST_FILE = Hush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
