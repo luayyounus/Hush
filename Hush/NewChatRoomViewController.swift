@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import Firebase
 
 class NewChatRoomViewController: UIViewController {
-    @IBOutlet weak var hushNameField: UITextField!
-    
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-//        let generatedHushNumber = hashValue
-    
-        
-        self.dismiss(animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+private lazy var chatRoomRef: DatabaseReference = Database.database().reference().child("chatRooms")
+    @IBOutlet weak var hushNameField: UITextField!
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    
+        if let name = hushNameField.text {
+            let newChannelRef = chatRoomRef.childByAutoId()
+            let singleChatRoom = [
+                "name": name
+            ]
+            newChannelRef.setValue(singleChatRoom)
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
 }
