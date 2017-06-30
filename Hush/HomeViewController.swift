@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.chatRoom.count == 0 ? 2 : self.chatRoom.count
+        return self.chatRoom.count == 0 ? 0 : self.chatRoom.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
