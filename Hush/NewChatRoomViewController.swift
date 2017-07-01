@@ -17,10 +17,9 @@ class NewChatRoomViewController: UIViewController {
     
 private lazy var chatRoomRef: DatabaseReference = Database.database().reference().child("chatRooms")
     @IBOutlet weak var hushNameField: UITextField!
-    
     @IBAction func doneButtonPressed(_ sender: UIButton) {
     
-        if let name = hushNameField.text {
+        if let name = hushNameField?.text {
             let newChannelRef = chatRoomRef.childByAutoId()
             let singleChatRoom = [
                 "name": name
@@ -30,4 +29,8 @@ private lazy var chatRoomRef: DatabaseReference = Database.database().reference(
         
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
