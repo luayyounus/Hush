@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,10 +18,32 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat Room Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5W-KU-YUG">
+                        <rect key="frame" x="18" y="31" width="150" height="23"/>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s8-8M-C4Z">
+                        <rect key="frame" x="302" y="42.5" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="x5W-KU-YUG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Bsc-Uv-iNu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7s8-8M-C4Z" secondAttribute="trailing" constant="10" id="Kdl-di-zDZ"/>
+                    <constraint firstItem="7s8-8M-C4Z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="TQD-39-fOL"/>
+                    <constraint firstItem="x5W-KU-YUG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="iKD-V6-fnG"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="NibCell" destination="H2p-sc-9uM" id="1g3-6F-FXZ"/>
+                <outlet property="charRoomDate" destination="7s8-8M-C4Z" id="25R-LG-sqQ"/>
+                <outlet property="chatRoomName" destination="x5W-KU-YUG" id="CeK-Vq-7z0"/>
             </connections>
             <point key="canvasLocation" x="-125" y="33.5"/>
         </tableViewCell>

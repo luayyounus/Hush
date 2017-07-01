@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="1022" y="68"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Chat Rooms View Controller-->
         <scene sceneID="VF3-Us-zuF">
             <objects>
-                <viewController id="EOQ-UD-Xqa" customClass="HomeViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EOQ-UD-Xqa" customClass="ChatRoomsViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K6G-U7-9Mi"/>
                         <viewControllerLayoutGuide type="bottom" id="E2m-IM-GJi"/>
@@ -120,7 +120,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="dOi-xB-JbZ" id="ZyS-p1-sNb"/>
-                        <segue destination="7M6-Sp-ezg" kind="show" identifier="EnterChatRoomSegue" id="H9Y-mL-Hr4"/>
+                        <segue destination="7M6-Sp-ezg" kind="show" identifier="ConversationViewController" id="H9Y-mL-Hr4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4WG-95-G3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,13 +247,30 @@
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tup-35-Tl4">
+                                <rect key="frame" x="87" y="368.5" width="200" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="L67-lM-IkV"/>
+                                    <constraint firstAttribute="width" constant="200" id="vnf-jT-WS0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="B4W-ys-K6e" eventType="touchUpInside" id="b3R-sm-X2z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="n1p-Ml-vt2" firstAttribute="centerX" secondItem="84y-Lv-Eyk" secondAttribute="centerX" id="4bM-Pk-wzf"/>
                             <constraint firstItem="Za1-El-gRf" firstAttribute="top" secondItem="n1p-Ml-vt2" secondAttribute="bottom" constant="40" id="HJC-mq-2ac"/>
                             <constraint firstItem="I1Z-4a-8bB" firstAttribute="centerY" secondItem="84y-Lv-Eyk" secondAttribute="centerY" id="O8o-9N-Gsr"/>
+                            <constraint firstItem="Tup-35-Tl4" firstAttribute="top" secondItem="I1Z-4a-8bB" secondAttribute="bottom" constant="10" id="baw-AH-N5e"/>
                             <constraint firstItem="I1Z-4a-8bB" firstAttribute="top" secondItem="Za1-El-gRf" secondAttribute="bottom" constant="30" id="kLG-4p-d6G"/>
+                            <constraint firstItem="Tup-35-Tl4" firstAttribute="centerX" secondItem="84y-Lv-Eyk" secondAttribute="centerX" id="sBI-1o-nbb"/>
                             <constraint firstItem="I1Z-4a-8bB" firstAttribute="centerX" secondItem="84y-Lv-Eyk" secondAttribute="centerX" id="xci-Bg-yFD"/>
                             <constraint firstItem="Za1-El-gRf" firstAttribute="centerX" secondItem="84y-Lv-Eyk" secondAttribute="centerX" id="zu7-vg-r8s"/>
                         </constraints>

@@ -11,12 +11,8 @@ import UIKit
 class ChatRoomNibCell: UITableViewCell {
 
     @IBOutlet weak var NibCell: UIView!
-    
-    var chatRoom : ChatRoom! {
-        didSet {
-            
-        }
-    }
+    @IBOutlet weak var chatRoomName: UILabel!
+    @IBOutlet weak var charRoomDate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
