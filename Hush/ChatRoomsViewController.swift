@@ -15,7 +15,9 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     
     private lazy var chatRoomRef: DatabaseReference = Database.database().reference().child("chatRooms")
     private var chatRoomHandle: DatabaseHandle?
+    
     var senderDisplayName: String?
+    
     var chatRoom = [ChatRoom]() {
         didSet {
             self.tableView.reloadData()
@@ -28,7 +30,21 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView.delegate = self
         let chatRoomNib = UINib(nibName: "ChatRoomNibCell", bundle: nil)
         self.tableView.register(chatRoomNib, forCellReuseIdentifier: ChatRoomNibCell.identifier)
+        checkUserStatus()
         startMonitoringChatRoomsUpdates()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        checkUserStatus()
+    }
+    
+    func checkUserStatus() {
+        if !(Auth.auth().currentUser != nil) {
+            self.chatRoom = []
+            self.tableView.reloadData()
+            self.present((self.storyboard?.instantiateViewController(withIdentifier: "GetStartedViewController"))! , animated: true, completion: nil)
+        }
     }
     
     private func startMonitoringChatRoomsUpdates() {

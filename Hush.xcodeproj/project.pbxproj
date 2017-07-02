@@ -22,6 +22,7 @@
 		01EEBAFD1F022392005751DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01EEBAFC1F022392005751DA /* Assets.xcassets */; };
 		01EEBB001F022392005751DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EEBAFE1F022392005751DA /* LaunchScreen.storyboard */; };
 		01EEBB0B1F022392005751DA /* HushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBB0A1F022392005751DA /* HushTests.swift */; };
+		01FCAB251F076A280006BE06 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCAB241F076A280006BE06 /* LoginViewController.swift */; };
 		3D02271B71A82B8EC39E1EEE /* Pods_HushTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B220C028E91D6234D2A5EA8C /* Pods_HushTests.framework */; };
 		C73EACD7CE6E40FA3D2D031C /* Pods_Hush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552ED304655CEC403374FBF1 /* Pods_Hush.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		01EEBB061F022392005751DA /* HushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EEBB0A1F022392005751DA /* HushTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HushTests.swift; sourceTree = "<group>"; };
 		01EEBB0C1F022392005751DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01FCAB241F076A280006BE06 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3D59A3AC3DDCAA12FD3A3381 /* Pods-HushTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HushTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HushTests/Pods-HushTests.release.xcconfig"; sourceTree = "<group>"; };
 		552ED304655CEC403374FBF1 /* Pods_Hush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B220C028E91D6234D2A5EA8C /* Pods_HushTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HushTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,7 @@
 		0130D97B1F02325C009DFD7A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				01FCAB241F076A280006BE06 /* LoginViewController.swift */,
 				0130D9811F0241AA009DFD7A /* ChatRoomsViewController.swift */,
 				011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */,
 				011EABC51F03B34200F27016 /* ConversationViewController.swift */,
@@ -107,9 +110,9 @@
 		0130D97D1F023268009DFD7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				01EEBAF61F022392005751DA /* Main.storyboard */,
 				0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */,
 				0130D9881F0327A8009DFD7A /* ChatRoomNibCell.xib */,
-				01EEBAF61F022392005751DA /* Main.storyboard */,
 				01EEBAFE1F022392005751DA /* LaunchScreen.storyboard */,
 				01EEBAFC1F022392005751DA /* Assets.xcassets */,
 			);
@@ -407,6 +410,7 @@
 				01EEBAFB1F022392005751DA /* Hush.xcdatamodeld in Sources */,
 				011EABC61F03B34200F27016 /* ConversationViewController.swift in Sources */,
 				0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */,
+				01FCAB251F076A280006BE06 /* LoginViewController.swift in Sources */,
 				0130D9821F0241AA009DFD7A /* ChatRoomsViewController.swift in Sources */,
 				011EABC41F03AFF400F27016 /* NewChatRoomViewController.swift in Sources */,
 			);
