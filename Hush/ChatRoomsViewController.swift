@@ -26,8 +26,6 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    var newChatRoomAddedFlag: Bool = true
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
@@ -51,20 +49,17 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func startMonitoringChatRoomsUpdates() {
-        if newChatRoomAddedFlag {
-            self.chatRoom = []
-            chatRoomRef = Database.database().reference().child("chatRooms")
-            chatRoomHandle = chatRoomRef?.observe(.childAdded, with: { (snapShot) in
-                let chatRoomData = snapShot.value as! Dictionary<String,Any>
-                let id = snapShot.key
-                if let name = chatRoomData["name"] as! String!, name.characters.count > 0 {
-                    self.chatRoom.append(ChatRoom(id: id, name: name))
-                } else {
-                    print("Error! Can not retrieve data for chatRooms")
-                }
-            })
-            newChatRoomAddedFlag = false
-        }
+        self.chatRoom = []
+        chatRoomRef = Database.database().reference().child("chatRooms")
+        chatRoomHandle = chatRoomRef?.observe(.childAdded, with: { (snapShot) in
+            let chatRoomData = snapShot.value as! Dictionary<String,Any>
+            let id = snapShot.key
+            if let name = chatRoomData["name"] as! String!, name.characters.count > 0 {
+                self.chatRoom.append(ChatRoom(id: id, name: name))
+            } else {
+                print("Error! Can not retrieve data for chatRooms")
+            }
+        })
     }
     
     deinit {
@@ -82,6 +77,8 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
             conversationVC.senderDisplayName = senderDisplayName
             conversationVC.chatRoomRef = chatRoomRef?.child(chatRoom.id)
             conversationVC.chatRoom = chatRoom
+        } else if let newChatVC = segue.destination as? NewChatRoomViewController {
+            newChatVC.chatRoomRef = chatRoomRef
         }
     }
     
