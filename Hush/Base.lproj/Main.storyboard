@@ -166,7 +166,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="vHG-3f-1kd">
                             <connections>
-                                <segue destination="B4W-ys-K6e" kind="presentation" id="I0B-9W-kd1"/>
+                                <segue destination="B4W-ys-K6e" kind="presentation" identifier="newChatRoomViewController" id="I0B-9W-kd1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -310,12 +310,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="hushNameField" destination="Za1-El-gRf" id="jyt-HU-ch2"/>
+                        <outlet property="chatRoomName" destination="Za1-El-gRf" id="CdM-tf-jEw"/>
+                        <segue destination="EOQ-UD-Xqa" kind="show" identifier="appending" id="ZdA-hZ-IGM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elW-7H-A8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2956" y="440.32983508245883"/>
+            <point key="canvasLocation" x="2993" y="214"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dE8-92-bzh">
@@ -336,4 +337,7 @@
             <point key="canvasLocation" x="1021.6" y="773.16341829085468"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZdA-hZ-IGM"/>
+    </inferredMetricsTieBreakers>
 </document>
