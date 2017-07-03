@@ -21,9 +21,7 @@ class LoginViewController: UIViewController {
                     print(err.localizedDescription)
                     return
                 }
-                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {
-                    self.dismiss(animated: true, completion: nil)
-                })
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
         }
     }
