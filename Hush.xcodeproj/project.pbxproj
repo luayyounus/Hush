@@ -10,7 +10,6 @@
 		0106AD301F0228BD001A2050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */; };
 		011EABC41F03AFF400F27016 /* NewChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */; };
 		011EABC61F03B34200F27016 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC51F03B34200F27016 /* ConversationViewController.swift */; };
-		011EABC81F044E1900F27016 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011EABC71F044E1900F27016 /* Conversation.swift */; };
 		0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D97F1F0232E5009DFD7A /* ChatRoom.swift */; };
 		0130D9821F0241AA009DFD7A /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D9811F0241AA009DFD7A /* ChatRoomsViewController.swift */; };
 		0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */; };
@@ -41,7 +40,6 @@
 		0106AD2F1F0228BD001A2050 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatRoomViewController.swift; sourceTree = "<group>"; };
 		011EABC51F03B34200F27016 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
-		011EABC71F044E1900F27016 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		0130D97F1F0232E5009DFD7A /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		0130D9811F0241AA009DFD7A /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomNibCell.swift; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				0130D97F1F0232E5009DFD7A /* ChatRoom.swift */,
-				011EABC71F044E1900F27016 /* Conversation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -406,7 +403,6 @@
 				01EEBAF31F022392005751DA /* AppDelegate.swift in Sources */,
 				0130D98C1F03299D009DFD7A /* UIExtensions.swift in Sources */,
 				0130D9801F0232E5009DFD7A /* ChatRoom.swift in Sources */,
-				011EABC81F044E1900F27016 /* Conversation.swift in Sources */,
 				01EEBAFB1F022392005751DA /* Hush.xcdatamodeld in Sources */,
 				011EABC61F03B34200F27016 /* ConversationViewController.swift in Sources */,
 				0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */,
