@@ -13,7 +13,9 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var chatRoomRef: DatabaseReference = Database.database().reference().child("chatRooms")
+    static let shared = ChatRoomsViewController()
+    
+    private var chatRoomRef: DatabaseReference?
     private var chatRoomHandle: DatabaseHandle?
     
     var senderDisplayName: String?
@@ -24,14 +26,14 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    var newChatRoomAddedFlag: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
         let chatRoomNib = UINib(nibName: "ChatRoomNibCell", bundle: nil)
         self.tableView.register(chatRoomNib, forCellReuseIdentifier: ChatRoomNibCell.identifier)
-        checkUserStatus()
-        startMonitoringChatRoomsUpdates()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,42 +42,46 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func checkUserStatus() {
-        if !(Auth.auth().currentUser != nil) {
+        if Auth.auth().currentUser == nil {
             self.chatRoom = []
-            self.tableView.reloadData()
             self.present((self.storyboard?.instantiateViewController(withIdentifier: "GetStartedViewController"))! , animated: true, completion: nil)
+        } else {
+            startMonitoringChatRoomsUpdates()
         }
     }
     
-    private func startMonitoringChatRoomsUpdates() {
-        chatRoomHandle = chatRoomRef.observe(.childAdded, with: { (snapShot) in
-            let chatRoomData = snapShot.value as! Dictionary<String,Any>
-            let id = snapShot.key
-            if let name = chatRoomData["name"] as! String!, name.characters.count > 0 {
-                self.chatRoom.append(ChatRoom(id: id, name: name))
-                self.tableView.reloadData()
-            } else {
-                print("Error! Can not retrieve data for chatRooms")
-            }
-        })
+    func startMonitoringChatRoomsUpdates() {
+        if newChatRoomAddedFlag {
+            self.chatRoom = []
+            chatRoomRef = Database.database().reference().child("chatRooms")
+            chatRoomHandle = chatRoomRef?.observe(.childAdded, with: { (snapShot) in
+                let chatRoomData = snapShot.value as! Dictionary<String,Any>
+                let id = snapShot.key
+                if let name = chatRoomData["name"] as! String!, name.characters.count > 0 {
+                    self.chatRoom.append(ChatRoom(id: id, name: name))
+                } else {
+                    print("Error! Can not retrieve data for chatRooms")
+                }
+            })
+            newChatRoomAddedFlag = false
+        }
     }
     
     deinit {
         if let refHandle = chatRoomHandle {
-            chatRoomRef.removeObserver(withHandle: refHandle)
+            chatRoomRef?.removeObserver(withHandle: refHandle)
         }
     }
     
     //Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
         if let chatRoom = sender as? ChatRoom {
             let conversationVC = segue.destination as! ConversationViewController
             
             conversationVC.senderDisplayName = senderDisplayName
+            conversationVC.chatRoomRef = chatRoomRef?.child(chatRoom.id)
             conversationVC.chatRoom = chatRoom
-            conversationVC.chatRoomRef = chatRoomRef.child(chatRoom.id)
         }
     }
     
@@ -93,7 +99,13 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ConversationViewController", sender: self)
+        performSegue(withIdentifier: "ConversationViewController", sender: chatRoom[indexPath.row])
         self.tableView.deselectRow(at: indexPath, animated: false)
     }
+    
+    @IBAction func logoutPressed(_ sender: Any) {
+        try! Auth.auth().signOut()
+        checkUserStatus()
+    }
+    
 }
