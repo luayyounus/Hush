@@ -11,7 +11,7 @@ target 'Hush' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Messaging'
-  # pod 'JSQMessagesViewController'
+  pod 'JSQMessagesViewController'
 
   target 'HushTests' do
     inherit! :search_paths
