@@ -21,13 +21,22 @@ class LoginViewController: UIViewController {
                     print(err.localizedDescription)
                     return
                 }
-                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async(){
+                    self.performSegue(withIdentifier: "LoginToChatRooms", sender: self)
+                }
             })
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        let navVC = segue.destination as! UINavigationController
+        let chatRoomVC = navVC.viewControllers.first as! ChatRoomsViewController
+        chatRoomVC.senderDisplayName = self.nameTextField?.text
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+     
     }
 }
