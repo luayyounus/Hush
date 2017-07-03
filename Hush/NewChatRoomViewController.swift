@@ -28,9 +28,9 @@ private lazy var chatRoomRef: DatabaseReference = Database.database().reference(
         }
         
         self.dismiss(animated: true, completion: nil)
+        ChatRoomsViewController.shared.newChatRoomAddedFlag = true
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

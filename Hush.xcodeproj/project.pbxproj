@@ -91,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				01FCAB241F076A280006BE06 /* LoginViewController.swift */,
-				0130D9811F0241AA009DFD7A /* ChatRoomsViewController.swift */,
 				011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */,
+				0130D9811F0241AA009DFD7A /* ChatRoomsViewController.swift */,
 				011EABC51F03B34200F27016 /* ConversationViewController.swift */,
 			);
 			name = Controller;
