@@ -19,7 +19,6 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     private var chatRoomHandle: DatabaseHandle?
     
     var senderDisplayName: String?
-    
     var chatRoom = [ChatRoom]() {
         didSet {
             self.tableView.reloadData()

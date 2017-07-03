@@ -13,6 +13,7 @@
         <!--View Controller-->
         <scene sceneID="dc8-hC-tm4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y2j-Ro-GIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="GetStartedViewController" id="jE2-jf-ZXh" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kne-hb-dog"/>
@@ -73,13 +74,13 @@
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y2j-Ro-GIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-714" y="798"/>
+            <point key="canvasLocation" x="444" y="773"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WYK-FK-Jph">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tng-zt-cXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Eox-7y-0JV" customClass="LoginViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wed-jt-Nih"/>
@@ -129,13 +130,13 @@
                         <segue destination="mO2-5E-mPB" kind="presentation" identifier="LoginToChatRooms" id="RxZ-qf-6Ig"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tng-zt-cXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="797"/>
+            <point key="canvasLocation" x="960" y="773"/>
         </scene>
         <!--Chat Rooms View Controller-->
         <scene sceneID="VF3-Us-zuF">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4WG-95-G3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="EOQ-UD-Xqa" customClass="ChatRoomsViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K6G-U7-9Mi"/>
@@ -164,7 +165,7 @@
                                 <action selector="logoutPressed:" destination="EOQ-UD-Xqa" id="Nfl-CR-o3T"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="vHG-3f-1kd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vHG-3f-1kd">
                             <connections>
                                 <segue destination="B4W-ys-K6e" kind="presentation" identifier="newChatRoomViewController" id="I0B-9W-kd1"/>
                             </connections>
@@ -175,13 +176,13 @@
                         <segue destination="7M6-Sp-ezg" kind="show" identifier="ConversationViewController" id="atO-Bw-Opb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4WG-95-G3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1960.8" y="773.16341829085468"/>
+            <point key="canvasLocation" x="1928" y="773"/>
         </scene>
         <!--Conversation View Controller-->
         <scene sceneID="ccf-3w-z7i">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N6j-Im-aFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="7M6-Sp-ezg" customClass="ConversationViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ux3-nD-ipI"/>
@@ -214,7 +215,7 @@
                                 <state key="normal" title="Send"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qip-eB-TxQ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="545"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -234,13 +235,13 @@
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N6j-Im-aFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2956" y="1131.1844077961021"/>
         </scene>
         <!--New Chat Room View Controller-->
         <scene sceneID="BWC-xw-Nbq">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="elW-7H-A8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="B4W-ys-K6e" customClass="NewChatRoomViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jtH-X1-av1"/>
@@ -314,13 +315,13 @@
                         <segue destination="EOQ-UD-Xqa" kind="show" identifier="appending" id="ZdA-hZ-IGM"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="elW-7H-A8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2993" y="214"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dE8-92-bzh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qq8-0T-YC5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mO2-5E-mPB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dfJ-sW-DKq">
@@ -332,12 +333,11 @@
                         <segue destination="EOQ-UD-Xqa" kind="relationship" relationship="rootViewController" id="EwM-DR-t4g"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qq8-0T-YC5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021.6" y="773.16341829085468"/>
+            <point key="canvasLocation" x="1436" y="773"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZdA-hZ-IGM"/>
+        <segue reference="EwM-DR-t4g"/>
     </inferredMetricsTieBreakers>
 </document>

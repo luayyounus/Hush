@@ -8,31 +8,23 @@
 
 import UIKit
 import Firebase
+import JSQMessagesViewController
 
 class ConversationViewController: UIViewController {
+
+    var messages = [JSQMessage]()
     
-    
-    var chatRoomRef: DatabaseReference?
     var senderDisplayName: String?
+    var chatRoomRef: DatabaseReference?
     var chatRoom: ChatRoom? {
         didSet {
-            title = chatRoom?.name
+            self.title = chatRoom?.name
         }
     }
     
-//    let date = Date()
-//    let formatter = DateFormatter()
-//    formatter.dateFormat = "EEEE MMM dd, yyyy h:mm:ss a zzz"
-//    let stringDate = formatter.string(from: date)
-//    
-//    guard let date = chatRoomData["date"] as! String! else { return }
-
-    
-    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.senderDisplayName = Auth.auth().currentUser?.uid
     }
+    
 }
