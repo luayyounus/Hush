@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
-class ConversationViewController: UIViewController {
+class ConversationViewController: UIViewController, JSQMessagesCollectionViewDataSource {
 
     var messages = [JSQMessage]()
     
@@ -26,5 +26,18 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         self.senderDisplayName = Auth.auth().currentUser?.uid
     }
+    
+    
+    
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    }
+    
     
 }
