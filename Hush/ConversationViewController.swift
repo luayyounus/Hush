@@ -22,6 +22,10 @@ class ConversationViewController: UIViewController, JSQMessagesCollectionViewDat
         }
     }
     
+    lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
+    lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.senderDisplayName = Auth.auth().currentUser?.uid
