@@ -56,6 +56,7 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        print(senderDisplayName)
         observeTyping()
     }
     
