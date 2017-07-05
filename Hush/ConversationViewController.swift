@@ -14,6 +14,7 @@ class ConversationViewController: JSQMessagesViewController {
 
     var chatRoomRef: DatabaseReference?
     
+    private lazy var messageRef: DatabaseReference = self.chatRoomRef!.child("messages")
     private lazy var userIsTypingRef: DatabaseReference = self.chatRoomRef!.child("typingIndicator").child(self.senderId)
     private lazy var usersTypingQuery: DatabaseQuery = self.chatRoomRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
 
@@ -58,6 +59,15 @@ class ConversationViewController: JSQMessagesViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+    }
+    
+    deinit {
+        if let refHandle = newMessageRefHandle {
+            messageRef.removeObserver(withHandle: refHandle)
+        }
+        if let refHandle = updatedMessageRefHandle {
+            messageRef.removeObserver(withHandle: refHandle)
+        }
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
