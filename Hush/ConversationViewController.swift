@@ -13,13 +13,14 @@ import JSQMessagesViewController
 class ConversationViewController: JSQMessagesViewController {
 
     var chatRoomRef: DatabaseReference?
+    var senderDisplayName: String?
     
     private lazy var messageRef: DatabaseReference = self.chatRoomRef!.child("messages")
-    private lazy var userIsTypingRef: DatabaseReference = self.chatRoomRef!.child("typingIndicator").child(self.senderId)
-    private lazy var usersTypingQuery: DatabaseQuery = self.chatRoomRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
-
     private var newMessageRefHandle: DatabaseHandle?
     private var updatedMessageRefHandle: DatabaseHandle?
+
+    private lazy var userIsTypingRef: DatabaseReference = self.chatRoomRef!.child("typingIndicator").child(self.senderId)
+    private lazy var usersTypingQuery: DatabaseQuery = self.chatRoomRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
     
     private var messages: [JSQMessage] = []
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
@@ -153,6 +154,21 @@ class ConversationViewController: JSQMessagesViewController {
             self.showTypingIndicator = data.childrenCount > 0
             self.scrollToBottom(animated: true)
         }
+    }
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        let itemRef = messageRef.childByAutoId()
+        let messageItem = [
+            "senderId": senderId!,
+            "senderName": senderDisplayName!,
+            "text": text!,
+            ]
+        
+        itemRef.setValue(messageItem)
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        
+        finishSendingMessage()
     }
 
 }
