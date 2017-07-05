@@ -13,7 +13,6 @@ import JSQMessagesViewController
 class ConversationViewController: JSQMessagesViewController {
 
     var chatRoomRef: DatabaseReference?
-    var senderDisplayName: String?
     
     private lazy var messageRef: DatabaseReference = self.chatRoomRef!.child("messages")
     private var newMessageRefHandle: DatabaseHandle?
@@ -170,5 +169,4 @@ class ConversationViewController: JSQMessagesViewController {
         
         finishSendingMessage()
     }
-
 }
