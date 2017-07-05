@@ -26,6 +26,8 @@ class LoginViewController: UIViewController {
                 }
             })
         }
+        let userName = UserDefaults.standard
+        userName.set(self.nameTextField.text, forKey: "userName")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
