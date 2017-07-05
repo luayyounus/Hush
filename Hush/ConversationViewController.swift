@@ -46,8 +46,6 @@ class ConversationViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.senderId = Auth.auth().currentUser?.uid
@@ -58,7 +56,7 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        observeTyping()
     }
     
     deinit {
@@ -136,6 +134,24 @@ class ConversationViewController: JSQMessagesViewController {
                 return nil
             }
             return NSAttributedString(string: senderDisplayName)
+        }
+    }
+    
+    
+    private func observeTyping() {
+        let typingIndicatorRef = chatRoomRef!.child("typingIndicator")
+        userIsTypingRef = typingIndicatorRef.child(senderId)
+        userIsTypingRef.onDisconnectRemoveValue()
+        usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
+        
+        usersTypingQuery.observe(.value) { (data: DataSnapshot) in
+            
+            if data.childrenCount == 1 && self.isTyping {
+                return
+            }
+            
+            self.showTypingIndicator = data.childrenCount > 0
+            self.scrollToBottom(animated: true)
         }
     }
 
