@@ -56,7 +56,6 @@ class ConversationViewController: JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print(senderDisplayName)
         observeTyping()
     }
     
@@ -66,12 +65,6 @@ class ConversationViewController: JSQMessagesViewController {
         }
         if let refHandle = updatedMessageRefHandle {
             messageRef.removeObserver(withHandle: refHandle)
-        }
-    }
-    
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            self.messages.append(message)
         }
     }
     
@@ -116,7 +109,6 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        
         return nil
     }
     
@@ -156,6 +148,12 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
+    private func addMessage(withId id: String, name: String, text: String) {
+        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+            self.messages.append(message)
+        }
+    }
+    
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let itemRef = messageRef.childByAutoId()
         let messageItem = [
@@ -169,5 +167,25 @@ class ConversationViewController: JSQMessagesViewController {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         finishSendingMessage()
+    }
+    
+    private func observeMessages() {
+        let messageQuery = messageRef.queryLimited(toLast:25)
+        
+        newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
+            let messageData = snapshot.value as! Dictionary<String, String>
+            
+            if let id = messageData["senderId"] as String!,
+                let name = messageData["senderName"] as String!,
+                let text = messageData["text"] as String!,
+                text.characters.count > 0 {
+                
+                self.addMessage(withId: id, name: name, text: text)
+                self.finishReceivingMessage()
+                
+            } else {
+                print("Error! Could not decode message data")
+            }
+        })
     }
 }
