@@ -52,6 +52,8 @@ class ConversationViewController: JSQMessagesViewController {
 
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        
+        observeMessages()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -167,6 +169,7 @@ class ConversationViewController: JSQMessagesViewController {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         finishSendingMessage()
+        isTyping = false
     }
     
     private func observeMessages() {
