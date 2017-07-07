@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import JSQMessagesViewController
+import Photos
 
 class ConversationViewController: JSQMessagesViewController {
 
@@ -20,6 +21,8 @@ class ConversationViewController: JSQMessagesViewController {
 
     private lazy var userIsTypingRef: DatabaseReference = self.chatRoomRef!.child("typingIndicator").child(self.senderId)
     private lazy var usersTypingQuery: DatabaseQuery = self.chatRoomRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
+    
+    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://hush-bf81c.appspot.com")
     
     private var messages: [JSQMessage] = []
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
