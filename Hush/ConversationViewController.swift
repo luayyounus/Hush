@@ -132,6 +132,10 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
+    override func textViewDidChange(_ textView: UITextView) {
+        super.textViewDidChange(textView)
+        isTyping = textView.text != ""
+    }
     
     private func observeTyping() {
         let typingIndicatorRef = chatRoomRef!.child("typingIndicator")
@@ -150,26 +154,11 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
+    
     private func addMessage(withId id: String, name: String, text: String) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
             self.messages.append(message)
         }
-    }
-    
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        let itemRef = messageRef.childByAutoId()
-        let messageItem = [
-            "senderId": senderId!,
-            "senderName": senderDisplayName!,
-            "text": text!,
-            ]
-        
-        itemRef.setValue(messageItem)
-        
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        finishSendingMessage()
-        isTyping = false
     }
     
     private func observeMessages() {
@@ -190,5 +179,21 @@ class ConversationViewController: JSQMessagesViewController {
                 print("Error! Could not decode message data")
             }
         })
+    }
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        let itemRef = messageRef.childByAutoId()
+        let messageItem = [
+            "senderId": senderId!,
+            "senderName": senderDisplayName!,
+            "text": text!,
+            ]
+        
+        itemRef.setValue(messageItem)
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        
+        finishSendingMessage()
+        isTyping = false
     }
 }
