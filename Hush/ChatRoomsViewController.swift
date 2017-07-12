@@ -48,6 +48,10 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func startMonitoringChatRoomsUpdates() {
+        
+        let loadedUserName = UserDefaults.standard.string(forKey: "userName") ?? ""
+        self.senderDisplayName = loadedUserName
+
         self.chatRoom = []
         chatRoomRef = Database.database().reference().child("chatRooms")
         chatRoomHandle = chatRoomRef?.observe(.childAdded, with: { (snapShot) in
