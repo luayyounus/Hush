@@ -14,6 +14,8 @@ import Photos
 class ConversationViewController: JSQMessagesViewController {
 
     var chatRoomRef: DatabaseReference?
+    private var messages: [JSQMessage] = []
+    private let imageURLNotSetKey = "NotSet"
     
     private lazy var messageRef: DatabaseReference = self.chatRoomRef!.child("messages")
     private var newMessageRefHandle: DatabaseHandle?
@@ -23,10 +25,10 @@ class ConversationViewController: JSQMessagesViewController {
     private lazy var usersTypingQuery: DatabaseQuery = self.chatRoomRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
     
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://hush-bf81c.appspot.com")
-    
-    private var messages: [JSQMessage] = []
+
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
-    private let imageURLNotSetKey = "NotSet"
+    
+    let imagePicker = UIImagePickerController()
 
     var chatRoom: ChatRoom? {
         didSet {
@@ -49,6 +51,8 @@ class ConversationViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
+    
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.senderId = Auth.auth().currentUser?.uid
@@ -73,16 +77,8 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
-    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-    }
-    
-    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    }
-    
+   
+    // MARK: Collection View data source (and related) methods
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return self.messages[indexPath.item]
     }
@@ -135,35 +131,7 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
-    override func textViewDidChange(_ textView: UITextView) {
-        super.textViewDidChange(textView)
-        isTyping = textView.text != ""
-    }
-    
-    private func observeTyping() {
-        let typingIndicatorRef = chatRoomRef!.child("typingIndicator")
-        userIsTypingRef = typingIndicatorRef.child(senderId)
-        userIsTypingRef.onDisconnectRemoveValue()
-        usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
-        
-        usersTypingQuery.observe(.value) { (data: DataSnapshot) in
-            
-            if data.childrenCount == 1 && self.isTyping {
-                return
-            }
-            
-            self.showTypingIndicator = data.childrenCount > 0
-            self.scrollToBottom(animated: true)
-        }
-    }
-    
-    
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            self.messages.append(message)
-        }
-    }
-    
+    //MARK: FireBase and related methods
     private func observeMessages() {
         let messageQuery = messageRef.queryLimited(toLast:25)
         
@@ -184,6 +152,23 @@ class ConversationViewController: JSQMessagesViewController {
         })
     }
     
+    private func observeTyping() {
+        let typingIndicatorRef = chatRoomRef!.child("typingIndicator")
+        userIsTypingRef = typingIndicatorRef.child(senderId)
+        userIsTypingRef.onDisconnectRemoveValue()
+        usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
+        
+        usersTypingQuery.observe(.value) { (data: DataSnapshot) in
+            
+            if data.childrenCount == 1 && self.isTyping {
+                return
+            }
+            
+            self.showTypingIndicator = data.childrenCount > 0
+            self.scrollToBottom(animated: true)
+        }
+    }
+
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let itemRef = messageRef.childByAutoId()
         let messageItem = [
@@ -198,5 +183,115 @@ class ConversationViewController: JSQMessagesViewController {
         
         finishSendingMessage()
         isTyping = false
+    }
+    
+    func sendPhotoMessage() -> String? {
+        let itemRef = messageRef.childByAutoId()
+        
+        let messageItem = [
+            "photoURL": imageURLNotSetKey,
+            "senderId": senderId!,
+            ]
+        
+        itemRef.setValue(messageItem)
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        
+        finishSendingMessage()
+        return itemRef.key
+    }
+    
+    func setImageURL(_ url: String, forPhotoMessageWithKey key: String) {
+        let itemRef = messageRef.child(key)
+        itemRef.updateChildValues(["photoURL": url])
+    }
+    
+    func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
+        self.imagePicker.delegate = self
+        self.imagePicker.sourceType = sourceType
+        self.present(self.imagePicker, animated: true, completion: nil)
+    }
+    
+    override func didPressAccessoryButton(_ sender: UIButton) {
+        
+        let actionSheetController = UIAlertController()
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
+            self.presentImagePickerWith(sourceType: .camera)
+            self.imagePicker.allowsEditing = true
+        }
+        
+        let photoLibrary = UIAlertAction(title: "Photo & Video Library", style: .default) { (action) in
+            self.presentImagePickerWith(sourceType: .photoLibrary)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actionSheetController.addAction(camera)
+        }
+        
+        actionSheetController.addAction(photoLibrary)
+        actionSheetController.addAction(cancel)
+        
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    // MARK: UI and User Interaction
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    }
+    
+    private func addMessage(withId id: String, name: String, text: String) {
+        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+            self.messages.append(message)
+        }
+    }
+    
+    // MARK: UITextViewDelegate methods
+    override func textViewDidChange(_ textView: UITextView) {
+        super.textViewDidChange(textView)
+        isTyping = textView.text != ""
+    }
+}
+
+// MARK: Image Picker Delegate
+
+extension ConversationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        //picking the image from the Photo Library
+        if let photoReferenceURL = info[UIImagePickerControllerReferenceURL] as? URL {
+            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceURL], options: nil)
+            let asset = assets.firstObject
+            
+            if let key = sendPhotoMessage() {
+                asset?.requestContentEditingInput(with: nil, completionHandler: { (content, info) in
+                    let imageFileURL = content?.fullSizeImageURL
+                    
+                    let path = "\(Auth.auth().currentUser?.uid ?? "error user")/\(Date.timeIntervalSinceReferenceDate * 1000)/\(photoReferenceURL.lastPathComponent)"
+                    
+                    self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil, completion: { (metadata, err) in
+                        if let error = err {
+                            print("Error uploading photo: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                        self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+                    })
+                })
+            }
+        }
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion:nil)
     }
 }
