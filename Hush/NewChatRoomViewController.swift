@@ -18,8 +18,6 @@ class NewChatRoomViewController: UIViewController {
     
     var chatRoomRef: DatabaseReference?
     
-    var chatRoomToAppend: ChatRoom?
-    
     @IBOutlet weak var chatRoomName: UITextField!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -30,17 +28,7 @@ class NewChatRoomViewController: UIViewController {
                 "name": name
             ]
             chatRoomAutoId?.setValue(singleChatRoom)
-            chatRoomToAppend = ChatRoom(id: (chatRoomAutoId?.key)!, name: name)
             self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-    
-        if segue.identifier == ChatRoomsViewController.identifier {
-            guard let destination = segue.destination as? ChatRoomsViewController else { return }
-            destination.chatRoom.append(chatRoomToAppend!)
         }
     }
     
