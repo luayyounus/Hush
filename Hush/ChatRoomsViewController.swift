@@ -31,6 +31,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView.delegate = self
         let chatRoomNib = UINib(nibName: "ChatRoomNibCell", bundle: nil)
         self.tableView.register(chatRoomNib, forCellReuseIdentifier: ChatRoomNibCell.identifier)
+        startMonitoringChatRoomsUpdates()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,11 +40,9 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func checkUserStatus() {
-        if Auth.auth().currentUser == nil {
+        if UserDefaults.standard.value(forKey: "uid") == nil && Auth.auth().currentUser?.uid == nil {
             self.chatRoom = []
             self.present((self.storyboard?.instantiateViewController(withIdentifier: "GetStartedViewController"))! , animated: true, completion: nil)
-        } else {
-            startMonitoringChatRoomsUpdates()
         }
     }
     
@@ -103,8 +102,16 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView.deselectRow(at: indexPath, animated: false)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            chatRoomRef?.child(chatRoom[indexPath.row].id).removeValue()
+            self.chatRoom.remove(at: indexPath.row)
+        }
+    }
+    
     @IBAction func logoutPressed(_ sender: Any) {
         try! Auth.auth().signOut()
+        UserDefaults.standard.setValue(nil, forKey: "uid")
         checkUserStatus()
     }
     
