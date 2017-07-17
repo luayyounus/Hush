@@ -216,22 +216,30 @@ class ConversationViewController: JSQMessagesViewController {
         
         let actionSheetController = UIAlertController()
         
-        let camera = UIAlertAction(title: "Camera", style: .default) { (action) in
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .camera)
             self.imagePicker.allowsEditing = true
         }
-        
-        let photoLibrary = UIAlertAction(title: "Photo & Video Library", style: .default) { (action) in
+
+        let photoLibraryAction = UIAlertAction(title: "Photo & Video Library", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .photoLibrary)
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
+        let originalCameraIcon = UIImage(named: "camIcon.png")
+        let scaledCameraIcon = scaleDownIcon(for: originalCameraIcon!)
+        cameraAction.setValue(scaledCameraIcon, forKey: "image")
+
+        let photoLibraryIcon = UIImage(named: "photoLibIcon.png")
+        let scaledPhotoLibraryIcon = scaleDownIcon(for: photoLibraryIcon!)
+        photoLibraryAction.setValue(scaledPhotoLibraryIcon, forKey: "image")
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actionSheetController.addAction(camera)
+            actionSheetController.addAction(cameraAction)
         }
         
-        actionSheetController.addAction(photoLibrary)
+        actionSheetController.addAction(photoLibraryAction)
         actionSheetController.addAction(cancel)
         
         self.present(actionSheetController, animated: true, completion: nil)
