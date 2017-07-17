@@ -15,14 +15,12 @@ extension UIResponder {
     }
 }
 
-extension UIImage {
-    func scaleDownIcon(for image: UIImage) -> UIImage? {
-        let scale = UIScreen.main.scale
-        let size = CGSize(width: 30, height: 30)
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let newIcon = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newIcon
-    }
+func scaleDownIcon(for image: UIImage) -> UIImage {
+    let scale = UIScreen.main.scale
+    let size = CGSize(width: 30, height: 30)
+    UIGraphicsBeginImageContextWithOptions(size, false, scale)
+    image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+    let newIcon = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return newIcon!
 }
