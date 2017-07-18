@@ -261,6 +261,18 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
+    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
+        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
+            messages.append(message)
+            
+            if (mediaItem.image == nil) {
+                photoMessageMap[key] = mediaItem
+            }
+            
+            collectionView.reloadData()
+        }
+    }
+    
     // MARK: UITextViewDelegate methods
     override func textViewDidChange(_ textView: UITextView) {
         super.textViewDidChange(textView)
