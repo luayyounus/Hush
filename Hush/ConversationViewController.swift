@@ -55,6 +55,7 @@ class ConversationViewController: JSQMessagesViewController {
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imagePicker.delegate = self
         self.senderId = Auth.auth().currentUser?.uid
 
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
@@ -190,8 +191,8 @@ class ConversationViewController: JSQMessagesViewController {
         
         let messageItem = [
             "photoURL": imageURLNotSetKey,
-            "senderId": senderId!,
-            ]
+            "senderId": senderId!
+        ]
         
         itemRef.setValue(messageItem)
         
@@ -207,7 +208,6 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
-        self.imagePicker.delegate = self
         self.imagePicker.sourceType = sourceType
         self.present(self.imagePicker, animated: true, completion: nil)
     }
@@ -223,6 +223,7 @@ class ConversationViewController: JSQMessagesViewController {
 
         let photoLibraryAction = UIAlertAction(title: "Photo & Video Library", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .photoLibrary)
+            self.imagePicker.allowsEditing = true
         }
         
         let originalCameraIcon = UIImage(named: "camIcon.png")
@@ -270,31 +271,42 @@ class ConversationViewController: JSQMessagesViewController {
 }
 
 // MARK: Image Picker Delegate
-
 extension ConversationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         picker.dismiss(animated: true, completion: nil)
         
         //picking the image from the Photo Library
-        if let photoReferenceURL = info[UIImagePickerControllerReferenceURL] as? URL {
-            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceURL], options: nil)
+        
+        guard let image: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        let imageData = UIImageJPEGRepresentation(image, 0.6)!
+        
+        if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+            
+            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
             let asset = assets.firstObject
             
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/JPG"
+            
             if let key = sendPhotoMessage() {
-                asset?.requestContentEditingInput(with: nil, completionHandler: { (content, info) in
-                    let imageFileURL = content?.fullSizeImageURL
+                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+                    let imageNameFromURL = contentEditingInput?.fullSizeImageURL?.lastPathComponent
                     
-                    let path = "\(Auth.auth().currentUser?.uid ?? "error user")/\(Date.timeIntervalSinceReferenceDate * 1000)/\(photoReferenceURL.lastPathComponent)"
+                    print("image file url \(imageNameFromURL!)")
                     
-                    self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil, completion: { (metadata, err) in
+                    let path = "\(Auth.auth().currentUser!.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))"
+                    
+                    self.storageRef.child(path).child("\(imageNameFromURL!)").putData(imageData, metadata: metadata, completion: { (metadata, err) in
                         if let error = err {
                             print("Error uploading photo: \(error.localizedDescription)")
                             return
                         }
-                        
                         self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
                     })
                 })
+            } else {
+                //picking a Photo from the Camera
             }
         }
     }

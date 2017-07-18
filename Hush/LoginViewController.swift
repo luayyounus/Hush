@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
                 }
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "LoginToChatRooms", sender: self)
+                    UserDefaults.standard.setValue(Auth.auth().currentUser?.uid, forKey: "uid")
                 }
             })
         }
