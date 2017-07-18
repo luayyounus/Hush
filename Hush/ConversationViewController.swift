@@ -153,6 +153,31 @@ class ConversationViewController: JSQMessagesViewController {
         })
     }
     
+    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
+        let storageRef = Storage.storage().reference(forURL: photoURL)
+        storageRef.getData(maxSize: INT64_MAX) { (data, error) in
+            if let error = error {
+                print("Error downloading image data: \(error.localizedDescription)")
+                return
+            }
+            storageRef.getMetadata(completion: { (metadata, error) in
+                if let error = error {
+                    print("Error downloading metadata: \(error.localizedDescription)")
+                    return
+                }
+                if (metadata?.contentType == "image") {
+                    mediaItem.image = UIImage.init(data: data!)
+                }
+                
+                self.collectionView.reloadData()
+                
+                guard key != nil else { return }
+                
+                self.photoMessageMap.removeValue(forKey: key!)
+            })
+        }
+    }
+    
     private func observeTyping() {
         let typingIndicatorRef = chatRoomRef!.child("typingIndicator")
         userIsTypingRef = typingIndicatorRef.child(senderId)
