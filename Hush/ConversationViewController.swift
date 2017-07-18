@@ -218,12 +218,10 @@ class ConversationViewController: JSQMessagesViewController {
         
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .camera)
-            self.imagePicker.allowsEditing = true
         }
 
         let photoLibraryAction = UIAlertAction(title: "Photo & Video Library", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .photoLibrary)
-            self.imagePicker.allowsEditing = true
         }
         
         let originalCameraIcon = UIImage(named: "camIcon.png")
@@ -277,23 +275,21 @@ extension ConversationViewController: UIImagePickerControllerDelegate, UINavigat
         picker.dismiss(animated: true, completion: nil)
         
         //picking the image from the Photo Library
-        
         guard let image: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
-        let imageData = UIImageJPEGRepresentation(image, 0.6)!
+        
+        let imageData = UIImageJPEGRepresentation(image, 0.5)!
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image"
         
         if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL {
             
             let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
             let asset = assets.firstObject
             
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/JPG"
-            
             if let key = sendPhotoMessage() {
                 asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
                     let imageNameFromURL = contentEditingInput?.fullSizeImageURL?.lastPathComponent
-                    
-                    print("image file url \(imageNameFromURL!)")
                     
                     let path = "\(Auth.auth().currentUser!.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))"
                     
@@ -306,11 +302,43 @@ extension ConversationViewController: UIImagePickerControllerDelegate, UINavigat
                     })
                 })
             } else {
-                //picking a Photo from the Camera
+                
             }
+        } else if let key = sendPhotoMessage() {
+            
+            var localId:String?
+            let imageManager = PHPhotoLibrary.shared()
+            
+            imageManager.performChanges({ () -> Void in
+                
+                let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                localId = request.placeholderForCreatedAsset?.localIdentifier
+                
+            }, completionHandler: { (success, error) -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
+                    
+                    if let localId = localId {
+                        
+                        let result = PHAsset.fetchAssets(withLocalIdentifiers: [localId], options: nil)
+                        result.firstObject?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+                            let imageNameFromURL = contentEditingInput?.fullSizeImageURL?.lastPathComponent
+                            let path = "\(Auth.auth().currentUser!.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))"
+                            
+                            self.storageRef.child(path).child("\(imageNameFromURL!)").putData(imageData, metadata: metadata, completion: { (metadata, err) in
+                                if let error = err {
+                                    print("Error uploading photo: \(error.localizedDescription)")
+                                    return
+                                }
+                                self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
+                            })
+                        })
+                        self.view.snapshotView(afterScreenUpdates: true)
+                    }
+                })
+            })
         }
     }
-
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion:nil)
     }
