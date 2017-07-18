@@ -147,8 +147,27 @@ class ConversationViewController: JSQMessagesViewController {
                 self.addMessage(withId: id, name: name, text: text)
                 self.finishReceivingMessage()
                 
+            } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
+                if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
+                    self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
+                    
+                    if photoURL.hasPrefix("gs://") {
+                        self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
+                    }
+                }
             } else {
                 print("Error! Could not decode message data")
+            }
+        })
+        
+        updatedMessageRefHandle = messageRef.observe(.childChanged, with: { (snapshot) in
+            let key = snapshot.key
+            let messageData = snapshot.value as! Dictionary<String, String>
+            
+            if let photoURL = messageData["photoURL"] as String! {
+                if let mediaItem = self.photoMessageMap[key] {
+                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
+                }
             }
         })
     }
