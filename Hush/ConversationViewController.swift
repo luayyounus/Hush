@@ -15,7 +15,6 @@ class ConversationViewController: JSQMessagesViewController {
 
     var chatRoomRef: DatabaseReference?
     private var messages: [JSQMessage] = []
-    private let imageURLNotSetKey = "NotSet"
     
     private lazy var messageRef: DatabaseReference = self.chatRoomRef!.child("messages")
     private var newMessageRefHandle: DatabaseHandle?
@@ -102,6 +101,8 @@ class ConversationViewController: JSQMessagesViewController {
         
         let message = messages[indexPath.item]
         
+        if message.media != nil { return cell }
+        
         if message.senderId == senderId {
             cell.textView.textColor = UIColor.white
         } else {
@@ -147,10 +148,53 @@ class ConversationViewController: JSQMessagesViewController {
                 self.addMessage(withId: id, name: name, text: text)
                 self.finishReceivingMessage()
                 
+            } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
+                if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
+                    self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
+
+                    if photoURL.hasPrefix("gs://") {
+                        self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: snapshot.key)
+                    }
+                }
             } else {
                 print("Error! Could not decode message data")
             }
         })
+        
+        updatedMessageRefHandle = messageRef.observe(.childChanged, with: { (snapshot) in
+            let key = snapshot.key
+            let messageData = snapshot.value as! Dictionary<String, String>
+            if let photoURL = messageData["photoURL"] as String! {
+                if let mediaItem = self.photoMessageMap[key] {
+                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
+                }
+            }
+        })
+    }
+    
+    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
+        let storageRef = Storage.storage().reference(forURL: photoURL)
+        storageRef.getData(maxSize: INT64_MAX) { (data, error) in
+            if let error = error {
+                print("Error downloading image data: \(error.localizedDescription)")
+                return
+            }
+            storageRef.getMetadata(completion: { (metadata, error) in
+                if let error = error {
+                    print("Error downloading metadata: \(error.localizedDescription)")
+                    return
+                }
+                if (metadata?.contentType == "image") {
+                    mediaItem.image = UIImage.init(data: data!)
+                }
+                
+                self.collectionView.reloadData()
+                
+                guard key != nil else { return }
+                
+                self.photoMessageMap.removeValue(forKey: key!)
+            })
+        }
     }
     
     private func observeTyping() {
@@ -185,10 +229,10 @@ class ConversationViewController: JSQMessagesViewController {
         finishSendingMessage()
         isTyping = false
     }
-    
+
     func sendPhotoMessage() -> String? {
         let itemRef = messageRef.childByAutoId()
-        
+        let imageURLNotSetKey = "NotSet"
         let messageItem = [
             "photoURL": imageURLNotSetKey,
             "senderId": senderId!
@@ -261,6 +305,19 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
+    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
+        
+        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
+            messages.append(message)
+            
+            if (mediaItem.image == nil) {
+                photoMessageMap[key] = mediaItem
+            }
+            
+            collectionView.reloadData()
+        }
+    }
+    
     // MARK: UITextViewDelegate methods
     override func textViewDidChange(_ textView: UITextView) {
         super.textViewDidChange(textView)
@@ -298,11 +355,10 @@ extension ConversationViewController: UIImagePickerControllerDelegate, UINavigat
                             print("Error uploading photo: \(error.localizedDescription)")
                             return
                         }
+                        
                         self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
                     })
                 })
-            } else {
-                
             }
         } else if let key = sendPhotoMessage() {
             
@@ -329,6 +385,7 @@ extension ConversationViewController: UIImagePickerControllerDelegate, UINavigat
                                     print("Error uploading photo: \(error.localizedDescription)")
                                     return
                                 }
+
                                 self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
                             })
                         })
