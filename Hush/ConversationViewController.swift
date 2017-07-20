@@ -105,8 +105,12 @@ class ConversationViewController: JSQMessagesViewController {
         
         if message.senderId == senderId {
             cell.textView.textColor = UIColor.white
+            cell.textView.linkTextAttributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            
         } else {
             cell.textView.textColor = UIColor.black
+            cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.jsq_messageBubbleBlue(),
+                                                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         }
         return cell
     }
@@ -116,7 +120,8 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        return 15
+        
+        return 0
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString? {
