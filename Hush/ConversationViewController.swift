@@ -28,6 +28,7 @@ class ConversationViewController: JSQMessagesViewController {
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
     
     let imagePicker = UIImagePickerController()
+    let dateFormatter = DateFormatter()
 
     var chatRoom: ChatRoom? {
         didSet {
@@ -148,14 +149,23 @@ class ConversationViewController: JSQMessagesViewController {
             if let id = messageData["senderId"] as String!,
                 let name = messageData["senderName"] as String!,
                 let text = messageData["text"] as String!,
+                let date = messageData["date"] as String!,
                 text.characters.count > 0 {
                 
-                self.addMessage(withId: id, name: name, text: text)
+                let dateFromString = self.dateFormatter.date(from: date)
+                
+                self.addMessage(withId: id, name: name, date: dateFromString!, text: text)
                 self.finishReceivingMessage()
                 
-            } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
+            } else if let id = messageData["senderId"] as String!,
+                let name = messageData["senderName"] as String!,
+                let photoURL = messageData["photoURL"] as String!,
+                let date = messageData["date"] as String! {
                 if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-                    self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
+                    
+                    let dateFromString = self.dateFormatter.date(from: date)
+                    
+                    self.addPhotoMessage(withId: id, name: name, key: snapshot.key, mediaItem: mediaItem, date: dateFromString!)
 
                     if photoURL.hasPrefix("gs://") {
                         self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: snapshot.key)
@@ -225,6 +235,7 @@ class ConversationViewController: JSQMessagesViewController {
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
+            "date": "\(date!)"
             ]
         
         itemRef.setValue(messageItem)
@@ -238,9 +249,13 @@ class ConversationViewController: JSQMessagesViewController {
     func sendPhotoMessage() -> String? {
         let itemRef = messageRef.childByAutoId()
         let imageURLNotSetKey = "NotSet"
+        let currentDate = Date()
+
         let messageItem = [
             "photoURL": imageURLNotSetKey,
-            "senderId": senderId!
+            "senderId": senderId!,
+            "senderName": senderDisplayName,
+            "date": "\(currentDate)"
         ]
         
         itemRef.setValue(messageItem)
@@ -304,21 +319,20 @@ class ConversationViewController: JSQMessagesViewController {
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
     
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+    private func addMessage(withId id: String, name: String, date: Date, text: String) {
+        if let message = JSQMessage(senderId: id, senderDisplayName: name, date: date, text: text) {
             self.messages.append(message)
         }
     }
     
-    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
+    private func addPhotoMessage(withId id: String, name: String, key: String, mediaItem: JSQPhotoMediaItem, date: Date) {
         
-        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
+        if let message = JSQMessage(senderId: id, senderDisplayName: name, date: date, media: mediaItem) {
             messages.append(message)
             
             if (mediaItem.image == nil) {
                 photoMessageMap[key] = mediaItem
             }
-            
             collectionView.reloadData()
         }
     }
