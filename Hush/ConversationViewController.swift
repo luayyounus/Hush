@@ -152,7 +152,8 @@ class ConversationViewController: JSQMessagesViewController {
                 let date = messageData["date"] as String!,
                 text.characters.count > 0 {
                 
-                let dateFromString = self.dateFormatter.date(from: date)
+                self.dateFormatter.dateFormat = "yyyy-mm-dd hh:mm:ss +zzzz"
+                let dateFromString = self.dateFormatter.date(from: "\(date)")
                 
                 self.addMessage(withId: id, name: name, date: dateFromString!, text: text)
                 self.finishReceivingMessage()
@@ -163,6 +164,7 @@ class ConversationViewController: JSQMessagesViewController {
                 let date = messageData["date"] as String! {
                 if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
                     
+                    self.dateFormatter.dateFormat = "yyyy-mm-dd hh:mm:ss +zzzz"
                     let dateFromString = self.dateFormatter.date(from: date)
                     
                     self.addPhotoMessage(withId: id, name: name, key: snapshot.key, mediaItem: mediaItem, date: dateFromString!)
