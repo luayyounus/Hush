@@ -28,6 +28,7 @@ class ConversationViewController: JSQMessagesViewController {
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
     
     let imagePicker = UIImagePickerController()
+    let dateFormatter = DateFormatter()
 
     var chatRoom: ChatRoom? {
         didSet {
@@ -120,8 +121,7 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        
-        return 0
+        return 15
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString? {
@@ -138,6 +138,20 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        
+        if var messageDate = messages[indexPath.item].date {
+            dateFormatter.timeZone = TimeZone.current
+            if (dateFormatter.timeZone.isDaylightSavingTime()) {
+                let dayLightSaving = dateFormatter.timeZone.daylightSavingTimeOffset()
+                messageDate.addTimeInterval(dayLightSaving)
+            }
+            let convertedDate = dateFormatter.string(from: messageDate)
+            return NSAttributedString(string: convertedDate)
+        }
+        return nil
+    }
+    
     //MARK: FireBase and related methods
     private func observeMessages() {
         let messageQuery = messageRef.queryLimited(toLast:25)
@@ -148,14 +162,25 @@ class ConversationViewController: JSQMessagesViewController {
             if let id = messageData["senderId"] as String!,
                 let name = messageData["senderName"] as String!,
                 let text = messageData["text"] as String!,
+                let date = messageData["date"] as String!,
                 text.characters.count > 0 {
                 
-                self.addMessage(withId: id, name: name, text: text)
+                self.dateFormatter.dateFormat = "yyyy-mm-dd hh:mm:ss +zzzz"
+                let dateFromString = self.dateFormatter.date(from: "\(date)")
+                
+                self.addMessage(withId: id, name: name, date: dateFromString!, text: text)
                 self.finishReceivingMessage()
                 
-            } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
+            } else if let id = messageData["senderId"] as String!,
+                let name = messageData["senderName"] as String!,
+                let photoURL = messageData["photoURL"] as String!,
+                let date = messageData["date"] as String! {
                 if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-                    self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
+                    
+                    self.dateFormatter.dateFormat = "yyyy-mm-dd hh:mm:ss +zzzz"
+                    let dateFromString = self.dateFormatter.date(from: date)
+                    
+                    self.addPhotoMessage(withId: id, name: name, key: snapshot.key, mediaItem: mediaItem, date: dateFromString!)
 
                     if photoURL.hasPrefix("gs://") {
                         self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: snapshot.key)
@@ -207,7 +232,7 @@ class ConversationViewController: JSQMessagesViewController {
         userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
-        
+
         usersTypingQuery.observe(.value) { (data: DataSnapshot) in
             
             if data.childrenCount == 1 && self.isTyping {
@@ -225,6 +250,7 @@ class ConversationViewController: JSQMessagesViewController {
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
+            "date": "\(date!)"
             ]
         
         itemRef.setValue(messageItem)
@@ -238,9 +264,13 @@ class ConversationViewController: JSQMessagesViewController {
     func sendPhotoMessage() -> String? {
         let itemRef = messageRef.childByAutoId()
         let imageURLNotSetKey = "NotSet"
+        let currentDate = Date()
+
         let messageItem = [
             "photoURL": imageURLNotSetKey,
-            "senderId": senderId!
+            "senderId": senderId!,
+            "senderName": senderDisplayName,
+            "date": "\(currentDate)"
         ]
         
         itemRef.setValue(messageItem)
@@ -269,7 +299,7 @@ class ConversationViewController: JSQMessagesViewController {
             self.presentImagePickerWith(sourceType: .camera)
         }
 
-        let photoLibraryAction = UIAlertAction(title: "Photo & Video Library", style: .default) { (action) in
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .photoLibrary)
         }
         
@@ -304,21 +334,20 @@ class ConversationViewController: JSQMessagesViewController {
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
     
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+    private func addMessage(withId id: String, name: String, date: Date, text: String) {
+        if let message = JSQMessage(senderId: id, senderDisplayName: name, date: date, text: text) {
             self.messages.append(message)
         }
     }
     
-    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
+    private func addPhotoMessage(withId id: String, name: String, key: String, mediaItem: JSQPhotoMediaItem, date: Date) {
         
-        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
+        if let message = JSQMessage(senderId: id, senderDisplayName: name, date: date, media: mediaItem) {
             messages.append(message)
             
             if (mediaItem.image == nil) {
                 photoMessageMap[key] = mediaItem
             }
-            
             collectionView.reloadData()
         }
     }
