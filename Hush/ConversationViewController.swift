@@ -121,8 +121,7 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        
-        return 0
+        return 15
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString? {
@@ -137,6 +136,20 @@ class ConversationViewController: JSQMessagesViewController {
             }
             return NSAttributedString(string: senderDisplayName)
         }
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        
+        if var messageDate = messages[indexPath.item].date {
+            dateFormatter.timeZone = TimeZone.current
+            if (dateFormatter.timeZone.isDaylightSavingTime()) {
+                let dayLightSaving = dateFormatter.timeZone.daylightSavingTimeOffset()
+                messageDate.addTimeInterval(dayLightSaving)
+            }
+            let convertedDate = dateFormatter.string(from: messageDate)
+            return NSAttributedString(string: convertedDate)
+        }
+        return nil
     }
     
     //MARK: FireBase and related methods
@@ -219,7 +232,7 @@ class ConversationViewController: JSQMessagesViewController {
         userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
-        
+
         usersTypingQuery.observe(.value) { (data: DataSnapshot) in
             
             if data.childrenCount == 1 && self.isTyping {
@@ -286,7 +299,7 @@ class ConversationViewController: JSQMessagesViewController {
             self.presentImagePickerWith(sourceType: .camera)
         }
 
-        let photoLibraryAction = UIAlertAction(title: "Photo & Video Library", style: .default) { (action) in
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .photoLibrary)
         }
         
