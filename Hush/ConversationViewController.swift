@@ -28,7 +28,9 @@ class ConversationViewController: JSQMessagesViewController {
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
     
     let imagePicker = UIImagePickerController()
+    
     let dateFormatter = DateFormatter()
+    var timeZoneInterval: TimeInterval = 0
 
     var chatRoom: ChatRoom? {
         didSet {
@@ -60,6 +62,12 @@ class ConversationViewController: JSQMessagesViewController {
 
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        
+        self.dateFormatter.timeZone = TimeZone.current
+
+        if (dateFormatter.timeZone.isDaylightSavingTime()) {
+            self.timeZoneInterval = dateFormatter.timeZone.daylightSavingTimeOffset()
+        }
         
         observeMessages()
     }
@@ -113,6 +121,14 @@ class ConversationViewController: JSQMessagesViewController {
             cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.jsq_messageBubbleBlue(),
                                                 NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         }
+        
+        var messageDate = messages[indexPath.item].date!
+        messageDate.addTimeInterval(self.timeZoneInterval)
+        dateFormatter.timeStyle = .short
+        let displayDate = dateFormatter.string(from: messageDate)
+        cell.timeStamp.text = displayDate
+        cell.timeStamp.font = UIFont.systemFont(ofSize: 10)
+
         return cell
     }
     
@@ -121,6 +137,7 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        
         return 15
     }
     
@@ -136,20 +153,6 @@ class ConversationViewController: JSQMessagesViewController {
             }
             return NSAttributedString(string: senderDisplayName)
         }
-    }
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAt indexPath: IndexPath!) -> NSAttributedString! {
-        
-        if var messageDate = messages[indexPath.item].date {
-            dateFormatter.timeZone = TimeZone.current
-            if (dateFormatter.timeZone.isDaylightSavingTime()) {
-                let dayLightSaving = dateFormatter.timeZone.daylightSavingTimeOffset()
-                messageDate.addTimeInterval(dayLightSaving)
-            }
-            let convertedDate = dateFormatter.string(from: messageDate)
-            return NSAttributedString(string: convertedDate)
-        }
-        return nil
     }
     
     //MARK: FireBase and related methods
