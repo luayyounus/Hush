@@ -15,6 +15,7 @@
 		0130D9891F0327A8009DFD7A /* ChatRoomNibCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */; };
 		0130D98A1F0327A8009DFD7A /* ChatRoomNibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0130D9881F0327A8009DFD7A /* ChatRoomNibCell.xib */; };
 		0130D98C1F03299D009DFD7A /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0130D98B1F03299D009DFD7A /* UIExtensions.swift */; };
+		0152359E1F270CF8008468EF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152359D1F270CF8008468EF /* PhotoViewController.swift */; };
 		01EEBAF31F022392005751DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBAF21F022392005751DA /* AppDelegate.swift */; };
 		01EEBAF81F022392005751DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01EEBAF61F022392005751DA /* Main.storyboard */; };
 		01EEBAFB1F022392005751DA /* Hush.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01EEBAF91F022392005751DA /* Hush.xcdatamodeld */; };
@@ -45,6 +46,7 @@
 		0130D9871F0327A8009DFD7A /* ChatRoomNibCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomNibCell.swift; sourceTree = "<group>"; };
 		0130D9881F0327A8009DFD7A /* ChatRoomNibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomNibCell.xib; sourceTree = "<group>"; };
 		0130D98B1F03299D009DFD7A /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		0152359D1F270CF8008468EF /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		01A076B41F060D9D00F2CD45 /* Hush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hush.entitlements; sourceTree = "<group>"; };
 		01EEBAEF1F022392005751DA /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EEBAF21F022392005751DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				011EABC31F03AFF400F27016 /* NewChatRoomViewController.swift */,
 				0130D9811F0241AA009DFD7A /* ChatRoomsViewController.swift */,
 				011EABC51F03B34200F27016 /* ConversationViewController.swift */,
+				0152359D1F270CF8008468EF /* PhotoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				01FCAB251F076A280006BE06 /* LoginViewController.swift in Sources */,
 				0130D9821F0241AA009DFD7A /* ChatRoomsViewController.swift in Sources */,
 				011EABC41F03AFF400F27016 /* NewChatRoomViewController.swift in Sources */,
+				0152359E1F270CF8008468EF /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@ import Photos
 
 class ConversationViewController: JSQMessagesViewController {
 
+    @IBOutlet weak var VCTitle: UINavigationItem!
     var chatRoomRef: DatabaseReference?
     private var messages: [JSQMessage] = []
     
@@ -34,7 +35,7 @@ class ConversationViewController: JSQMessagesViewController {
 
     var chatRoom: ChatRoom? {
         didSet {
-            self.title = chatRoom?.name
+            self.VCTitle.title = chatRoom?.name
         }
     }
     
@@ -68,7 +69,6 @@ class ConversationViewController: JSQMessagesViewController {
         if (dateFormatter.timeZone.isDaylightSavingTime()) {
             self.timeZoneInterval = dateFormatter.timeZone.daylightSavingTimeOffset()
         }
-        
         observeMessages()
     }
     
@@ -392,7 +392,6 @@ extension ConversationViewController: UIImagePickerControllerDelegate, UINavigat
                             print("Error uploading photo: \(error.localizedDescription)")
                             return
                         }
-                        
                         self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
                     })
                 })
@@ -422,7 +421,6 @@ extension ConversationViewController: UIImagePickerControllerDelegate, UINavigat
                                     print("Error uploading photo: \(error.localizedDescription)")
                                     return
                                 }
-
                                 self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
                             })
                         })
