@@ -166,7 +166,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vHG-3f-1kd">
                             <connections>
-                                <segue destination="B4W-ys-K6e" kind="presentation" identifier="newChatRoomViewController" id="I0B-9W-kd1"/>
+                                <segue destination="B4W-ys-K6e" kind="presentation" identifier="NewChatRoomViewController" id="I0B-9W-kd1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -179,10 +179,9 @@
             </objects>
             <point key="canvasLocation" x="2092" y="771"/>
         </scene>
-        <!--Conversation View Controller-->
+        <!--Title-->
         <scene sceneID="ccf-3w-z7i">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N6j-Im-aFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="7M6-Sp-ezg" customClass="ConversationViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ux3-nD-ipI"/>
@@ -193,9 +192,72 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="P0J-Aj-NQ2"/>
+                    <connections>
+                        <outlet property="VCTitle" destination="P0J-Aj-NQ2" id="omz-li-ayc"/>
+                        <segue destination="mhM-Nk-X6t" kind="presentation" id="TXj-ZB-AlS"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N6j-Im-aFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2956" y="1131.1844077961021"/>
+            <point key="canvasLocation" x="2956" y="1159"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="U8B-7r-1ae">
+            <objects>
+                <viewController storyboardIdentifier="PhotoViewController" id="mhM-Nk-X6t" customClass="PhotoViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B9o-p6-9Wt"/>
+                        <viewControllerLayoutGuide type="bottom" id="QYj-WO-Zsi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vDf-Yj-bU5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udR-6g-BHK">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Photo Number" id="gM2-wq-mCh">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" id="mJ9-Y8-ae8">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="mhM-Nk-X6t" id="SoS-sF-mg5"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2W-Lr-VK0">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="8Nj-0b-fX6"/>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="85N-yJ-lkW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="85N-yJ-lkW" firstAttribute="top" secondItem="vDf-Yj-bU5" secondAttribute="top" id="19e-Qc-oh5"/>
+                            <constraint firstAttribute="trailing" secondItem="udR-6g-BHK" secondAttribute="trailing" id="3b5-8f-kX3"/>
+                            <constraint firstAttribute="trailing" secondItem="85N-yJ-lkW" secondAttribute="trailing" id="5DB-8Y-JBu"/>
+                            <constraint firstAttribute="trailing" secondItem="u2W-Lr-VK0" secondAttribute="trailing" id="C0B-oy-uPX"/>
+                            <constraint firstItem="QYj-WO-Zsi" firstAttribute="top" secondItem="u2W-Lr-VK0" secondAttribute="bottom" id="Fn0-U8-nh8"/>
+                            <constraint firstItem="udR-6g-BHK" firstAttribute="leading" secondItem="vDf-Yj-bU5" secondAttribute="leading" id="bbF-0q-dPZ"/>
+                            <constraint firstItem="QYj-WO-Zsi" firstAttribute="top" secondItem="85N-yJ-lkW" secondAttribute="bottom" id="mpK-GO-NtY"/>
+                            <constraint firstItem="85N-yJ-lkW" firstAttribute="leading" secondItem="vDf-Yj-bU5" secondAttribute="leading" id="usB-3h-W5N"/>
+                            <constraint firstItem="udR-6g-BHK" firstAttribute="top" secondItem="B9o-p6-9Wt" secondAttribute="bottom" id="y5P-EA-eYj"/>
+                            <constraint firstItem="u2W-Lr-VK0" firstAttribute="leading" secondItem="vDf-Yj-bU5" secondAttribute="leading" id="zdq-tP-0lU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="navBarTopConstraint" destination="y5P-EA-eYj" id="7c0-sW-1tR"/>
+                        <outlet property="toolbarBottomConstraint" destination="Fn0-U8-nh8" id="7cd-zK-L57"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTm-ab-V17" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3996" y="1156.3718140929536"/>
         </scene>
         <!--New Chat Room View Controller-->
         <scene sceneID="BWC-xw-Nbq">
@@ -274,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elW-7H-A8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2993" y="214"/>
+            <point key="canvasLocation" x="2956" y="439"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dE8-92-bzh">
