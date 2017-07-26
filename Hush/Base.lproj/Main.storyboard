@@ -215,7 +215,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="85N-yJ-lkW">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2W-Lr-VK0">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -226,7 +227,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="85N-yJ-lkW" firstAttribute="top" secondItem="vDf-Yj-bU5" secondAttribute="top" constant="20" id="19e-Qc-oh5"/>
+                            <constraint firstItem="85N-yJ-lkW" firstAttribute="top" secondItem="vDf-Yj-bU5" secondAttribute="top" id="19e-Qc-oh5"/>
                             <constraint firstAttribute="trailing" secondItem="85N-yJ-lkW" secondAttribute="trailing" id="5DB-8Y-JBu"/>
                             <constraint firstAttribute="trailing" secondItem="u2W-Lr-VK0" secondAttribute="trailing" id="C0B-oy-uPX"/>
                             <constraint firstItem="QYj-WO-Zsi" firstAttribute="top" secondItem="u2W-Lr-VK0" secondAttribute="bottom" id="Fn0-U8-nh8"/>
