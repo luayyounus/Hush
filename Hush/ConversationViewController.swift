@@ -155,6 +155,25 @@ class ConversationViewController: JSQMessagesViewController {
         }
     }
     
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+        self.performSegue(withIdentifier: PhotoViewController.identifier, sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == PhotoViewController.identifier {
+            segue.destination.transitioningDelegate = self as? UIViewControllerTransitioningDelegate
+            
+            if let selectedIndex = sender as? IndexPath {
+                guard let destinationVC = segue.destination as? PhotoViewController else { return }
+                
+                let imageTapped = self.messages[selectedIndex.item].media
+                destinationVC.imageFromConversation = imageTapped as? JSQPhotoMediaItem
+                
+            }
+        }
+    }
+    
     //MARK: FireBase and related methods
     private func observeMessages() {
         let messageQuery = messageRef.queryLimited(toLast:25)
