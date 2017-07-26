@@ -165,11 +165,10 @@ class ConversationViewController: JSQMessagesViewController {
             segue.destination.transitioningDelegate = self as? UIViewControllerTransitioningDelegate
             
             if let selectedIndex = sender as? IndexPath {
-                guard let destinationVC = segue.destination as? PhotoViewController else { return }
-                
+                guard let navigationController = segue.destination as? UINavigationController else { return }
+                let photoViewController = navigationController.viewControllers.first as! PhotoViewController
                 let imageTapped = self.messages[selectedIndex.item].media
-                destinationVC.imageFromConversation = imageTapped as? JSQPhotoMediaItem
-                
+                photoViewController.imageToView = imageTapped as? JSQPhotoMediaItem
             }
         }
     }

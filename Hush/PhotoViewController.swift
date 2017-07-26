@@ -11,18 +11,18 @@ import JSQMessagesViewController
 
 class PhotoViewController: UIViewController {
 
-    @IBOutlet weak var navBarTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
     
-    var imageFromConversation: JSQPhotoMediaItem?
+    var imageToView: JSQPhotoMediaItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imageView.image = imageFromConversation?.image
+        self.imageView.image = imageToView?.image
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
     }
 }
