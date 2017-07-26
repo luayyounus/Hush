@@ -156,7 +156,9 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-        self.performSegue(withIdentifier: PhotoViewController.identifier, sender: indexPath)
+        if messages[indexPath.item].isMediaMessage {
+            self.performSegue(withIdentifier: PhotoViewController.identifier, sender: indexPath)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
