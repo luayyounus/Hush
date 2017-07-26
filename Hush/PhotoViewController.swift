@@ -11,7 +11,6 @@ import JSQMessagesViewController
 
 class PhotoViewController: UIViewController {
 
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var navBarTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
