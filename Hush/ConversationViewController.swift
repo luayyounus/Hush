@@ -27,6 +27,7 @@ class ConversationViewController: JSQMessagesViewController {
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://hush-bf81c.appspot.com")
 
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
+    var imageDownloadCompleteIndicator: Bool = false
     
     let imagePicker = UIImagePickerController()
     
@@ -156,7 +157,8 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-        if messages[indexPath.item].isMediaMessage {
+        
+        if self.messages[indexPath.item].isMediaMessage && self.imageDownloadCompleteIndicator {
             self.performSegue(withIdentifier: PhotoViewController.identifier, sender: indexPath)
         }
     }
@@ -241,6 +243,8 @@ class ConversationViewController: JSQMessagesViewController {
                 }
                 
                 self.collectionView.reloadData()
+                
+                self.imageDownloadCompleteIndicator = true
                 
                 guard key != nil else { return }
                 
