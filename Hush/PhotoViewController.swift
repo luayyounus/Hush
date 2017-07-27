@@ -11,30 +11,38 @@ import JSQMessagesViewController
 
 class PhotoViewController: UIViewController {
 
-    @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var navigationBarTitle: UINavigationItem!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     var imageToView: JSQPhotoMediaItem?
+    var imageTappedIndicator: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.hidesBarsOnTap = true
-
         self.imageView.image = imageToView?.image
+        self.imageView.isUserInteractionEnabled = true
+        self.navigationBarTitle.title = "1 of ?"
     }
     
     override var prefersStatusBarHidden: Bool {
-        if self.navigationController?.isNavigationBarHidden == true {
-            return true
-        }
-        return false
-    }
-    
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return UIStatusBarAnimation.slide
+        return true
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func imageTappedOnce(_ sender: UITapGestureRecognizer) {
+        if self.imageTappedIndicator {
+            self.imageTappedIndicator = false
+            self.navigationBar.isHidden = false
+            self.toolbar.isHidden = false
+            return
+        }
+        self.imageTappedIndicator = true
+        self.navigationBar.isHidden = true
+        self.toolbar.isHidden = true
     }
 }
