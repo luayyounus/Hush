@@ -195,14 +195,14 @@
                     <navigationItem key="navigationItem" title="Title" id="P0J-Aj-NQ2"/>
                     <connections>
                         <outlet property="VCTitle" destination="P0J-Aj-NQ2" id="omz-li-ayc"/>
-                        <segue destination="f3D-nK-Yse" kind="presentation" identifier="PhotoViewController" id="TXj-ZB-AlS"/>
+                        <segue destination="mhM-Nk-X6t" kind="presentation" identifier="PhotoViewController" id="k8o-rF-Ft4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6j-Im-aFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2956" y="1159"/>
         </scene>
-        <!--Photo Number-->
+        <!--Photo View Controller-->
         <scene sceneID="U8B-7r-1ae">
             <objects>
                 <viewController storyboardIdentifier="PhotoViewController" id="mhM-Nk-X6t" customClass="PhotoViewController" customModule="Hush" customModuleProvider="target" sceneMemberID="viewController">
@@ -217,6 +217,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="85N-yJ-lkW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="pd5-hM-zOS" appends="YES" id="hoO-I3-saL"/>
+                                </connections>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2W-Lr-VK0">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -224,6 +227,18 @@
                                     <barButtonItem systemItem="action" id="8Nj-0b-fX6"/>
                                 </items>
                             </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mr6-mN-Hd3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="hXy-eb-hAd">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="Pzk-1K-69e">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="mhM-Nk-X6t" id="YNq-TT-Em9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -231,26 +246,31 @@
                             <constraint firstAttribute="trailing" secondItem="85N-yJ-lkW" secondAttribute="trailing" id="5DB-8Y-JBu"/>
                             <constraint firstAttribute="trailing" secondItem="u2W-Lr-VK0" secondAttribute="trailing" id="C0B-oy-uPX"/>
                             <constraint firstItem="QYj-WO-Zsi" firstAttribute="top" secondItem="u2W-Lr-VK0" secondAttribute="bottom" id="Fn0-U8-nh8"/>
+                            <constraint firstItem="mr6-mN-Hd3" firstAttribute="top" secondItem="B9o-p6-9Wt" secondAttribute="bottom" id="iEr-Jm-aUY"/>
+                            <constraint firstItem="mr6-mN-Hd3" firstAttribute="leading" secondItem="vDf-Yj-bU5" secondAttribute="leading" id="jyA-Ie-2H4"/>
                             <constraint firstItem="QYj-WO-Zsi" firstAttribute="top" secondItem="85N-yJ-lkW" secondAttribute="bottom" id="mpK-GO-NtY"/>
                             <constraint firstItem="85N-yJ-lkW" firstAttribute="leading" secondItem="vDf-Yj-bU5" secondAttribute="leading" id="usB-3h-W5N"/>
+                            <constraint firstAttribute="trailing" secondItem="mr6-mN-Hd3" secondAttribute="trailing" id="wd9-ez-pd5"/>
                             <constraint firstItem="u2W-Lr-VK0" firstAttribute="leading" secondItem="vDf-Yj-bU5" secondAttribute="leading" id="zdq-tP-0lU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Photo Number" id="6eb-IV-nOt">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="mJ9-Y8-ae8">
-                            <connections>
-                                <action selector="doneButtonPressed:" destination="mhM-Nk-X6t" id="SoS-sF-mg5"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="85N-yJ-lkW" id="HqJ-b8-Dud"/>
+                        <outlet property="navigationBar" destination="mr6-mN-Hd3" id="Sr9-Ef-SgZ"/>
+                        <outlet property="navigationBarTitle" destination="hXy-eb-hAd" id="flq-T1-XBB"/>
+                        <outlet property="toolbar" destination="u2W-Lr-VK0" id="Iuo-Rx-yqj"/>
                         <outlet property="toolbarBottomConstraint" destination="Fn0-U8-nh8" id="77O-mI-JhS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTm-ab-V17" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pd5-hM-zOS">
+                    <connections>
+                        <action selector="imageTappedOnce:" destination="mhM-Nk-X6t" id="Yb4-Ti-P7H"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4935.1999999999998" y="1156.3718140929536"/>
+            <point key="canvasLocation" x="3815" y="1158"/>
         </scene>
         <!--New Chat Room View Controller-->
         <scene sceneID="BWC-xw-Nbq">
@@ -348,24 +368,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qq8-0T-YC5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1361" y="772"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="8Gc-Ir-JDV">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f3D-nK-Yse" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vOB-dw-D7t">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mhM-Nk-X6t" kind="relationship" relationship="rootViewController" id="Upi-3E-q88"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ov1-fr-FaY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3996" y="1156.3718140929536"/>
         </scene>
     </scenes>
 </document>

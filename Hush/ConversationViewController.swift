@@ -167,8 +167,7 @@ class ConversationViewController: JSQMessagesViewController {
             segue.destination.transitioningDelegate = self as? UIViewControllerTransitioningDelegate
             
             if let selectedIndex = sender as? IndexPath {
-                guard let navigationController = segue.destination as? UINavigationController else { return }
-                let photoViewController = navigationController.viewControllers.first as! PhotoViewController
+                guard let photoViewController = segue.destination as? PhotoViewController else { return }
                 let imageTapped = self.messages[selectedIndex.item].media
                 photoViewController.imageToView = imageTapped as? JSQPhotoMediaItem
             }
