@@ -27,6 +27,7 @@ class ConversationViewController: JSQMessagesViewController {
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://hush-bf81c.appspot.com")
 
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
+    var imageDownloadCompleteIndicator: Bool = false
     
     let imagePicker = UIImagePickerController()
     
@@ -156,7 +157,10 @@ class ConversationViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-        self.performSegue(withIdentifier: PhotoViewController.identifier, sender: indexPath)
+        
+        if self.messages[indexPath.item].isMediaMessage && self.imageDownloadCompleteIndicator {
+            self.performSegue(withIdentifier: PhotoViewController.identifier, sender: indexPath)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -165,8 +169,7 @@ class ConversationViewController: JSQMessagesViewController {
             segue.destination.transitioningDelegate = self as? UIViewControllerTransitioningDelegate
             
             if let selectedIndex = sender as? IndexPath {
-                guard let navigationController = segue.destination as? UINavigationController else { return }
-                let photoViewController = navigationController.viewControllers.first as! PhotoViewController
+                guard let photoViewController = segue.destination as? PhotoViewController else { return }
                 let imageTapped = self.messages[selectedIndex.item].media
                 photoViewController.imageToView = imageTapped as? JSQPhotoMediaItem
             }
@@ -240,6 +243,8 @@ class ConversationViewController: JSQMessagesViewController {
                 }
                 
                 self.collectionView.reloadData()
+                
+                self.imageDownloadCompleteIndicator = true
                 
                 guard key != nil else { return }
                 
