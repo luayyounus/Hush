@@ -3,7 +3,7 @@
  
 ### Profile
 -----------
-##### Software developer with a bachelor’s degree in Computer Telecommunications Engineering. Passionate about designing interactive multiplatform applications. Skilled at design with a keen-eye for creating engaging UI experiences. Motivated to build new projects and provide flexible solutions.
+#### Software developer with a bachelor’s degree in Computer Telecommunications Engineering. Passionate about designing interactive multiplatform applications. Skilled at design with a keen-eye for creating engaging UI experiences. Motivated to build new projects and provide flexible solutions.
 
 ### Technical Skills
 --------------------
