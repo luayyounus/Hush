@@ -65,11 +65,11 @@
 
 ### Education And Certificates
 ------------------------------
-##### Code Fellows - Seattle, USA
+#### Code Fellows - Seattle, USA
 ###### Certificate, Advanced Software Development in iOS *(May 2017)*
-##### University of Washington - Seattle, USA
+#### University of Washington - Seattle, USA
 ###### Certificate of IEP Program	 *(Dec 2016)*
-##### International Training Institute - Dubai, UAE
+#### International Training Institute - Dubai, UAE
 ###### CCNA 200-120 Course *(Jan 2016)*
-##### Al-Mansour University - Baghdad, Iraq
+#### Al-Mansour University - Baghdad, Iraq
 ###### B.Sc. Computer Telecommunications Engineering *(July 2014)*
