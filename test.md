@@ -3,12 +3,10 @@
  
 ### Profile
 -----------
-
 ##### Software developer with a bachelor’s degree in Computer Telecommunications Engineering. Passionate about designing interactive multiplatform applications. Skilled at design with a keen-eye for creating engaging UI experiences. Motivated to build new projects and provide flexible solutions.
 
 ### Technical Skills
 --------------------
-
 #### Programming & Database Languages
 - Java | C++ | Swift | Objective-C | OOP | JavaScript | HTML | CSS | Postgresql | MySQL
 
@@ -33,7 +31,6 @@
 
 ### Projects
 ------------
-
 - **Hush Messenger** *(July 2017)* iOS Messenger App written in Swift and bridged with Objective-C. The app allows users to create chat rooms, send and receive messages quickly with or without signing up.
 
 - **Rest Insured** *(May 2017)* iOS application written with Objective-C and bridged with Swift. The App connects users with medical facilities that accept their insurance provider based on location and user input. A redefined API is used to comply with the end-points needed for the app design.
