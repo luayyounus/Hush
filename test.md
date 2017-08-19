@@ -1,11 +1,13 @@
-### Luay Younus
+## Luay Younus
 ###### Seattle, WA | (607) 800 1575 | Luayghazwan@Gmail.com
  
-## Profile					
+### Profile
+-----------
 
 ##### Software developer with a bachelor’s degree in Computer Telecommunications Engineering. Passionate about designing interactive multiplatform applications. Skilled at design with a keen-eye for creating engaging UI experiences. Motivated to build new projects and provide flexible solutions.
 
-## Technical Skills												
+### Technical Skills
+--------------------
 
 #### Programming & Database Languages
 - Java | C++ | Swift | Objective-C | OOP | JavaScript | HTML | CSS | Postgresql | MySQL
@@ -29,7 +31,8 @@
 #### Operating Systems
 - Mac: OSX | Windows: 98, XP, Vista, 7, 8.1, 10 | Linux: Ubuntu
 
-## Projects
+### Projects
+------------
 
 - Hush Messenger (July 2017) iOS Messenger App written in Swift and bridged with Objective-C. The app allows users to create chat rooms, send and receive messages quickly with or without signing up.
 
@@ -39,8 +42,9 @@
 
 - What Are You Craving? (February 2017) A website written in JavaScript, HTML, CSS, and jQuery. It targets food enthusiasts and uses Google Maps and Yelp APIs to show restaurants and cafes of different food categories in Seattle. 
 
-## Professional Experience
-### SAAR MEDTEC - Baghdad, Iraq
+### Professional Experience
+---------------------------
+#### SAAR MEDTEC - Baghdad, Iraq
 ##### *Network Administrator (Jan 2016 – Sep 2016)*
 - Assign routing protocols and routing table configuration
 - Maintain servers such as file servers and VPN gateways
@@ -53,18 +57,19 @@
 - Examine medical equipment for malfunctions before distribution
 - Staying informed about the health services in cardiovascular products and joint replacement technologies
 
-### Mouawad Group - Istanbul, Turkey
+#### Mouawad Group - Istanbul, Turkey
 ##### *Chief Marketing Officer	 (Nov 2014 – Sep 2015)*
 - Analyze the market’s demands and pricing and report back to CEO on expected trends
 - Making accurate cost calculations to provide customers with quotes
 - Attend exhibitions, events and demonstrations to represent the organization; generate new leads
 
-## Education And Certificates
-#### Code Fellows - Seattle, USA
+### Education And Certificates
+------------------------------
+##### Code Fellows - Seattle, USA
 ###### Certificate, Advanced Software Development in iOS *(May 2017)*
-#### University of Washington - Seattle, USA
+##### University of Washington - Seattle, USA
 ###### Certificate of IEP Program	 *(Dec 2016)*
-#### International Training Institute - Dubai, UAE
+##### International Training Institute - Dubai, UAE
 ###### CCNA 200-120 Course *(Jan 2016)*
-#### Al-Mansour University - Baghdad, Iraq
+##### Al-Mansour University - Baghdad, Iraq
 ###### B.Sc. Computer Telecommunications Engineering *(July 2014)*
