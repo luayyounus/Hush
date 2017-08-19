@@ -34,13 +34,13 @@
 ### Projects
 ------------
 
-- Hush Messenger (July 2017) iOS Messenger App written in Swift and bridged with Objective-C. The app allows users to create chat rooms, send and receive messages quickly with or without signing up.
+- **Hush Messenger** *(July 2017)* iOS Messenger App written in Swift and bridged with Objective-C. The app allows users to create chat rooms, send and receive messages quickly with or without signing up.
 
-- Rest Insured (May 2017) iOS application written with Objective-C and bridged with Swift. The App connects users with medical facilities that accept their insurance provider based on location and user input. A redefined API is used to comply with the end-points needed for the app design.
+- **Rest Insured** *(May 2017)* iOS application written with Objective-C and bridged with Swift. The App connects users with medical facilities that accept their insurance provider based on location and user input. A redefined API is used to comply with the end-points needed for the app design.
 
-- Hustle (April 2017) iOS application written in Swift. The app helps students manage their job search after graduation. Assist with personal accountability to handle tasks, leads, planning and networking. 
+- **Hustle** *(April 2017)* iOS application written in Swift. The app helps students manage their job search after graduation. Assist with personal accountability to handle tasks, leads, planning and networking. 
 
-- What Are You Craving? (February 2017) A website written in JavaScript, HTML, CSS, and jQuery. It targets food enthusiasts and uses Google Maps and Yelp APIs to show restaurants and cafes of different food categories in Seattle. 
+- **What Are You Craving?** *(February 2017)* A website written in JavaScript, HTML, CSS, and jQuery. It targets food enthusiasts and uses Google Maps and Yelp APIs to show restaurants and cafes of different food categories in Seattle. 
 
 ### Professional Experience
 ---------------------------
