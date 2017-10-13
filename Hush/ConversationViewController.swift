@@ -115,12 +115,12 @@ class ConversationViewController: JSQMessagesViewController {
         
         if message.senderId == senderId {
             cell.textView.textColor = UIColor.white
-            cell.textView.linkTextAttributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            cell.textView.linkTextAttributes = [NSAttributedStringKey.underlineStyle.rawValue: NSUnderlineStyle.styleSingle.rawValue]
             
         } else {
             cell.textView.textColor = UIColor.black
-            cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.jsq_messageBubbleBlue(),
-                                                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            cell.textView.linkTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.jsq_messageBubbleBlue(),
+                                                NSAttributedStringKey.underlineStyle.rawValue: NSUnderlineStyle.styleSingle.rawValue]
         }
         
         var messageDate = messages[indexPath.item].date!
@@ -190,9 +190,11 @@ class ConversationViewController: JSQMessagesViewController {
                 text.characters.count > 0 {
                 
                 self.dateFormatter.dateFormat = "yyyy-mm-dd hh:mm:ss +zzzz"
-                let dateFromString = self.dateFormatter.date(from: "\(date)")
+                guard let dateFromString = self.dateFormatter.date(from: "\(date)") else { return }
+                print("id: \(id) name: \(name) date: \(date) text: \(text)")
                 
-                self.addMessage(withId: id, name: name, date: dateFromString!, text: text)
+                
+                self.addMessage(withId: id, name: name, date: dateFromString, text: text)
                 self.finishReceivingMessage()
                 
             } else if let id = messageData["senderId"] as String!,
@@ -202,9 +204,9 @@ class ConversationViewController: JSQMessagesViewController {
                 if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
                     
                     self.dateFormatter.dateFormat = "yyyy-mm-dd hh:mm:ss +zzzz"
-                    let dateFromString = self.dateFormatter.date(from: date)
+                    guard let dateFromString = self.dateFormatter.date(from: date) else { return }
                     
-                    self.addPhotoMessage(withId: id, name: name, key: snapshot.key, mediaItem: mediaItem, date: dateFromString!)
+                    self.addPhotoMessage(withId: id, name: name, key: snapshot.key, mediaItem: mediaItem, date: dateFromString)
 
                     if photoURL.hasPrefix("gs://") {
                         self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: snapshot.key)
