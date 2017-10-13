@@ -11,6 +11,7 @@ import Firebase
 import JSQMessagesViewController
 import Photos
 
+@objcMembers
 class ConversationViewController: JSQMessagesViewController {
 
     @IBOutlet weak var VCTitle: UINavigationItem!

@@ -7,7 +7,9 @@
 //
 
 import XCTest
+import Firebase
 @testable import Hush
+
 
 class HushTests: XCTestCase {
     
